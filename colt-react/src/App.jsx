@@ -8,7 +8,8 @@ import "./App.css";
 // import ColorList from "./ColorList";
 // import Slot from "./Slot";
 // import ShoppingList from "./ShoppingList";
-import PropertiesList from "./PropertiesList";
+// import PropertiesList from "./PropertiesList";
+import Clicker from "./Clicker";
 
 // const data = [
 //   { id: 1, item: "eggs", quantity: 12, completed: true },
@@ -17,14 +18,14 @@ import PropertiesList from "./PropertiesList";
 //   { id: 4, item: "eggs", quantity: 12, completed: false },
 // ];
 
-const properties = [
-  { id: 129031, name: "Desert Yurt", rating: 4.9, price: 150 },
-  { id: 129331, name: "Lone Mountain Cabin", rating: 4.8, price: 250 },
-  { id: 129032, name: "Cactus Retreat", rating: 4.75, price: 300 },
-  { id: 129033, name: "Redwood Treehouse Escape", rating: 4.9, price: 120 },
-  { id: 129034, name: "Oceanview Condo", rating: 4.7, price: 140 },
-  { id: 129035, name: "Gold Miner Campground", rating: 4.69, price: 96 },
-];
+// const properties = [
+//   { id: 129031, name: "Desert Yurt", rating: 4.9, price: 150 },
+//   { id: 129331, name: "Lone Mountain Cabin", rating: 4.8, price: 250 },
+//   { id: 129032, name: "Cactus Retreat", rating: 4.75, price: 300 },
+//   { id: 129033, name: "Redwood Treehouse Escape", rating: 4.9, price: 120 },
+//   { id: 129034, name: "Oceanview Condo", rating: 4.7, price: 140 },
+//   { id: 129035, name: "Gold Miner Campground", rating: 4.69, price: 96 },
+// ];
 
 function App() {
   return (
@@ -47,7 +48,9 @@ function App() {
 
       {/* <Slot slot1="🍒" slot2="🍒" slot3="🍒" /> */}
       {/* <ShoppingList items={data} /> */}
-      <PropertiesList items={properties} />
+      {/* <PropertiesList items={properties} /> */}
+      <Clicker message="Hi" buttonText="Please click me" />
+      {/* <Clicker message="Please stop clicking me!" buttonText="do not click" /> */}
     </div>
   );
 }
