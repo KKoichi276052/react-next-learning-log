@@ -12,6 +12,7 @@ import "./App.css";
 // import Clicker from "./Clicker";
 // import Counter from "./Counter";
 import Toggler from "./Toggler";
+import TogglerCounter from "./ToggleCounter";
 
 // const data = [
 //   { id: 1, item: "eggs", quantity: 12, completed: true },
@@ -47,14 +48,14 @@ function App() {
       <Heading text="Hello!" color="pink" fontSize="60px" />
 
       <ColorList colors={["red", "pink", "purple", "teal"]} /> */}
-
       {/* <Slot slot1="🍒" slot2="🍒" slot3="🍒" /> */}
       {/* <ShoppingList items={data} /> */}
       {/* <PropertiesList items={properties} /> */}
       {/* <Clicker message="Hi" buttonText="Please click me" /> */}
       {/* <Clicker message="Please stop clicking me!" buttonText="do not click" /> */}
       {/* <Counter num={1} /> */}
-      <Toggler />
+      {/* <Toggler /> */}
+      <TogglerCounter />
     </div>
   );
 }
