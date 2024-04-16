@@ -1,26 +1,50 @@
 import { useState } from "react";
 
-export function ScoreKeeper() {
-  const [scores, setScores] = useState({ p1Score: 0, p2Score: 0 });
+export default function ScoreKeeper({ numPlayers, target }) {
+  const [scores, setScores] = useState(new Array(numPlayers).fill(0));
 
-  function increaseP1Score() {
-    setScores((oldScores) => {
-      return { ...oldScores, p1Score: oldScores.p1Score + 1 };
-    });
-  }
+  // function increaseScore(i) {
+  //   return setScores((oldScores) => {
+  //     const copy = [...oldScores];
+  //     copy[i] += 1;
+  //     return copy;
+  //   });
+  // }
 
-  function increaseP2Score() {
+  const increaseScore = (idx) => {
     setScores((oldScores) => {
-      return { ...oldScores, p2Score: oldScores.p2Score + 1 };
+      return oldScores.map((score, i) => {
+        if (i === idx) return score + 1;
+        return score;
+      });
     });
-  }
+  };
+
+  // function increaseP2Score() {
+  //   setScores((oldScores) => {
+  //     return { ...oldScores, p2Score: oldScores.p2Score + 1 };
+  //   });
+  // }
+
+  const reset = () => {
+    setScores(new Array(numPlayers).fill(0));
+  };
 
   return (
     <div>
-      <p>Player 1: {scores.p1Score}</p>
-      <p>Player 2: {scores.p2Score}</p>
-      <button onClick={increaseP1Score}>+1 Player 1</button>
-      <button onClick={increaseP2Score}>+2 Player 2</button>
+      <h1>orgnaeo</h1>
+      <ul>
+        {scores.map((score, i) => {
+          return (
+            <li key={i}>
+              Player {i + 1} : {score}
+              <button onClick={() => increaseScore(i)}>+1</button>
+              {score >= target && <span>WINNER!</span>}
+            </li>
+          );
+        })}
+      </ul>
+      <button onClick={reset}>Reset</button>
     </div>
   );
 }
