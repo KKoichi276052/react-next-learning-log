@@ -7,6 +7,7 @@ function ShoppingList() {
     { id: uuid(), product: "Bananas", quantity: 8 },
     { id: uuid(), product: "Eggs", quantity: 12 },
   ]);
+  // Function to pass down to Form
   const addItem = (item) => {
     setItems((currItems) => {
       return [...currItems, { ...item, id: uuid() }];
@@ -22,6 +23,7 @@ function ShoppingList() {
           </li>
         ))}
       </ul>
+      {/* Where passing down the addItem fn */}
       <ValidatedShoppingListForm addItem={addItem} />
     </div>
   );

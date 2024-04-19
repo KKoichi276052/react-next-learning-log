@@ -10,6 +10,8 @@ function BetterSignupForm() {
   const handleChange = (evt) => {
     const changedField = evt.target.name;
     const newValue = evt.target.value;
+    // get new state data and assign
+    // Common way to create new object and assigning
     setFormData((currData) => {
       return {
         ...currData,
