@@ -1,6 +1,7 @@
 import { useState } from "react";
 function BetterSignupForm() {
   const [formData, setFormData] = useState({
+    // working with multiple inputs
     firstName: "",
     lastName: "",
     password: "",
