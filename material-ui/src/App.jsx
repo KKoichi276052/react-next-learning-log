@@ -2,6 +2,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import BasicRating from "./BasicRating";
 import "./App.css";
+import FormDemo from "./FormDemo";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
         <Button variant="contained">Contained</Button>
       </Stack> */}
 
-      <BasicRating />
+      {/* <BasicRating /> */}
+      <FormDemo />
     </>
   );
 }
