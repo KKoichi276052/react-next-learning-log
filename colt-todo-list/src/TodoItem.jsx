@@ -41,7 +41,7 @@ export default function TodoItem({ todo, removeTodo, toggle }) {
             tabIndex={-1}
             disableRipple
             inputProps={{ "aria-labelledby": labelId }}
-            onChange={() => alert("Hi!")}
+            onChange={() => alert("hi")}
           />
         </ListItemIcon>
         <ListItemText id={labelId} primary={todo.title} />
