@@ -76,10 +76,10 @@ input {
   padding: 4rem 0;
 
   display: flex;
-  justify-content: space-between;
-  flex-direction: column;
+  /* justify-content: space-between; */
+  /* flex-direction: column; */
   gap: 3.2rem;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .actions button,
