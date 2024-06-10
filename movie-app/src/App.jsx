@@ -11,6 +11,7 @@ import WatchedMovieList from './Components/WatchedMovieList';
 import WatchedSummary from './Components/WatchedSummary';
 import Loader from './Components/Loader';
 import ErrorMessage from './Components/ErrorMessage';
+import MovieDetails from './Components/MovieDetails';
 
 // const tempMovieData = [
 //   {
@@ -67,7 +68,15 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [query, setQuery] = useState('');
-  const tempQuery = 'interstellar';
+  const [selectedId, setSelectedId] = useState(null);
+
+  const handleSelectMovie = (id) => {
+    setSelectedId((selectedId) => (id === selectedId ? null : id));
+  };
+
+  const handleCloseMovie = () => {
+    setSelectedId(null);
+  };
 
   useEffect(
     function () {
@@ -76,7 +85,9 @@ export default function App() {
           setIsLoading(true);
           setError('');
           const res = await fetch(
-            `http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${query}`
+            `http://www.omdbapi.com/?i=tt3896198&apikey=${
+              import.meta.env.VITE_OMDB_API_KEY
+            }&s=${query}`
           );
 
           if (!res.ok) {
@@ -115,12 +126,23 @@ export default function App() {
       <Main>
         <Box>
           {isLoading && <Loader />}
-          {isLoading && !error && <MovieList movies={movies} />}
+          {!isLoading && !error && (
+            <MovieList movies={movies} onSelectMovie={handleSelectMovie} />
+          )}
           {error && <ErrorMessage message={error} />}
         </Box>
         <Box>
-          <WatchedSummary />
-          <WatchedMovieList />
+          {selectedId ? (
+            <MovieDetails
+              selectedId={selectedId}
+              onCloseMovie={handleCloseMovie}
+            />
+          ) : (
+            <>
+              <WatchedSummary />
+              <WatchedMovieList />
+            </>
+          )}
         </Box>
       </Main>
     </>
