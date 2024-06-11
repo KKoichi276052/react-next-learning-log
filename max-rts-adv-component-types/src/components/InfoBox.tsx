@@ -11,6 +11,7 @@ type WarningBoxProps = {
   children: ReactNode;
 };
 
+// Discriminated union type
 type InfoBoxProps = HintBoxProps | WarningBoxProps;
 
 export default function InfoBox(props: InfoBoxProps) {
@@ -24,6 +25,7 @@ export default function InfoBox(props: InfoBoxProps) {
     );
   }
 
+  // hint mode ではないときはseverityが必要になる
   const { severity } = props;
 
   return (
