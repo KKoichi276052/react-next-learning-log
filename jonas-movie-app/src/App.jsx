@@ -12,22 +12,23 @@ import WatchedSummary from './Components/WatchedSummary';
 import Loader from './Components/Loader';
 import ErrorMessage from './Components/ErrorMessage';
 import MovieDetails from './Components/MovieDetails';
+import { useMovies } from './useMovies';
+import { useLocalStorageState } from './useLocalStorageState';
 
 export default function App() {
-  const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
   const [query, setQuery] = useState('');
   const [selectedId, setSelectedId] = useState(null);
+
+  const { movies, isLoading, error } = useMovies(query, handleCloseMovie);
+  const [watched, setWatched] = useLocalStorageState('watched');
 
   const handleSelectMovie = (id) => {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
   };
 
-  const handleCloseMovie = () => {
+  function handleCloseMovie() {
     setSelectedId(null);
-  };
+  }
 
   const handleAddWatched = (movie) => {
     setWatched((watched) =>
@@ -35,49 +36,13 @@ export default function App() {
         ? watched
         : [...watched, movie]
     );
+
+    // localStorage.setItem('watched', JSON.stringify([...watched, movie]));
   };
 
   const handleDeleteWatched = (id) => {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   };
-
-  useEffect(
-    function () {
-      async function fetchMovies() {
-        try {
-          setIsLoading(true);
-          setError('');
-          const res = await fetch(
-            `http://www.omdbapi.com/?i=tt3896198&apikey=${
-              import.meta.env.VITE_OMDB_API_KEY
-            }&s=${query}`
-          );
-
-          if (!res.ok) {
-            throw new Error('something went wrong with fetching new movies');
-          }
-
-          const data = await res.json();
-          if (data.Response === 'False')
-            throw new Error('movie not found. try another search');
-
-          setMovies(data.Search);
-        } catch (err) {
-          setError(err.message);
-        } finally {
-          setIsLoading(false);
-        }
-      }
-
-      if (query.length < 3) {
-        setMovies([]);
-        setError('');
-        return;
-      }
-      fetchMovies();
-    },
-    [query]
-  );
 
   return (
     <>
