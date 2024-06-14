@@ -30,7 +30,8 @@ export function useMovies(query, callback) {
 
           setMovies(data.Search);
         } catch (err) {
-          setError(err.message);
+          if (err.name === 'AbortError') setError(err.message);
+          setError('');
         } finally {
           setIsLoading(false);
         }
@@ -42,6 +43,10 @@ export function useMovies(query, callback) {
         return;
       }
       fetchMovies();
+
+      return function () {
+        controller.abort();
+      };
     },
     [query]
   );

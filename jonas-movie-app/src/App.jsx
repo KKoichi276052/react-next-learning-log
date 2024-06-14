@@ -44,6 +44,18 @@ export default function App() {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   };
 
+  useEffect(
+    function () {
+      function callback(e) {
+        if (e.code === 'Escape') {
+          handleCloseMovie();
+        }
+        document.addEventListener('keydown', callback);
+        return () => document.removeEventListener('keydown', callback);
+      }
+    }[handleCloseMovie]
+  );
+
   return (
     <>
       <Navbar>
