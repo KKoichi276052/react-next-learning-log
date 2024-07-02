@@ -1,10 +1,10 @@
-import Option from "./Option"
+import Option from './Option';
 
-export default function Question({ question }) {
-	return (
-		<div className="">
-			<h4>{question.question}</h4>
-			<Option question={question} />
-		</div>
-	)
-};
+export default function Question({ question, dispatch, answer }) {
+  return (
+    <div className="">
+      <h4>{question.question}</h4>
+      <Option question={question} answer={answer} dispatch={dispatch} />
+    </div>
+  );
+}
