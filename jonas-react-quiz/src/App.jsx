@@ -90,7 +90,7 @@ function App() {
   );
 
   useEffect(() => {
-    fetch('http://localhost:9000/questions')
+    fetch('https://codingheroes.io/api-react-course-projects/questions.json')
       .then((res) => res.json())
       .then((data) => dispatch({ type: 'dataReceived', payload: data }))
       // eslint-disable-next-line no-unused-vars
