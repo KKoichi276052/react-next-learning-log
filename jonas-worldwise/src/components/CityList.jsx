@@ -10,6 +10,7 @@ export default function CityList({ cities, isLoading }) {
     return (
       <Message>Add your first city by clicking on a city on the map</Message>
     );
+  console.log(cities);
 
   return (
     <ul className={styles.cityList}>
