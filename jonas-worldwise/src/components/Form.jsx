@@ -5,6 +5,7 @@ import styles from './Form.module.css';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 import BackButton from './BackButton';
+import { useUrlPosition } from '../hooks/useUrlPosition';
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -15,6 +16,7 @@ export function convertToEmoji(countryCode) {
 }
 
 function Form() {
+  const [mapLat, mapLng] = useUrlPosition();
   const navigate = useNavigate();
   const [cityName, setCityName] = useState('');
   const [country, setCountry] = useState('');
