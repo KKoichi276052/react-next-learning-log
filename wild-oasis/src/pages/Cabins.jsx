@@ -14,10 +14,9 @@ function Cabins() {
       <Row type="horizontal">
         <Heading as="h1">All cabins</Heading>
         <p>Filter / Sort</p>
-        <p>TEST</p>
       </Row>
 
-      <Row type="horizontal">
+      <Row>
         <CabinTable />
       </Row>
     </>

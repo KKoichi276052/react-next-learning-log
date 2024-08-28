@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-// import CabinRow from 'features/cabins/CabinRow';
+import CabinRow from './CabinRow';
 import Spinner from '../../ui/Spinner';
-import { StyledTable, StyledHeader } from '../../ui/Table';
+import Table from '../../ui/Table';
 // import Menus from '../../ui/Menus';
 // import Empty from '../../ui/Empty';
 // import { useCabins } from 'features/cabins/useCabins';
@@ -14,20 +14,19 @@ import { useQuery } from '@tanstack/react-query';
 // Right now this is not really reusable... But we will want to use a similar table for guests as well, but with different columns. ALSO, right now we are defining these columns in BOTH the TableHeader and the CabinRow, which is not good at all. Instead, it would be much better to simply pass the columns into the Table, and the table would give access to the columns to both the header and row. So how can we do that? Well we can again use a compound component! We don't HAVE to do it like this, there's a million ways to implement a table, also without CSS Grid, but this is what I chose
 
 // v1
-// const TableHeader = styled.header`
-//   display: grid;
-//   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
-//   column-gap: 2.4rem;
-//   align-items: center;
-
-//   background-color: var(--color-grey-50);
-//   border-bottom: 1px solid var(--color-grey-100);
-//   text-transform: uppercase;
-//   letter-spacing: 0.4px;
-//   font-weight: 600;
-//   color: var(--color-grey-600);
-//   padding: 1.6rem 2.4rem;
-// `;
+const TableHeader = styled.header`
+  display: grid;
+  grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
+  column-gap: 2.4rem;
+  align-items: center;
+  background-color: var(--color-grey-50);
+  border-bottom: 1px solid var(--color-grey-100);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+  color: var(--color-grey-600);
+  padding: 1.6rem 2.4rem;
+`;
 
 // We want each table row to have a menu, and we only want one of them to be open at the same time. We also want this functionality to be reusable. We could add a openID state here to the table, but that wouldn't really be reusable... The best way is to use a compound component
 
@@ -79,36 +78,35 @@ function CabinTable() {
     queryKey: ['cabins'],
     queryFn: getCabins,
   });
+  console.log(cabins);
 
   if (isLoading) return <Spinner />;
 
   return (
-    <>
-      {/* // <Menus> */}
-      {/* A beautiful API we created here! We could even have defined the widths on the columns in the table header individually, but this keeps it simpler, and I also really like it */}
-      {/* // <Table columns="9.6rem 0.8fr 2fr 1fr 1fr 3.2rem"> */}
-      <StyledTable>
-        <StyledHeader>
-          <div></div>
-          <div>Cabin</div>
-          <div>Capacity</div>
-          <div>Price</div>
-          <div>Discount</div>
-          <div></div>
-        </StyledHeader>
-      </StyledTable>
+    // {/* // <Menus> */}
+    // {/* A beautiful API we created here! We could even have defined the widths on the columns in the table header individually, but this keeps it simpler, and I also really like it */}
+    // {/* // <Table columns="9.6rem 0.8fr 2fr 1fr 1fr 3.2rem"> */}
+    <Table role="table">
+      <TableHeader>
+        <div></div>
+        <div>Cabin</div>
+        <div>Capacity</div>
+        <div>Price</div>
+        <div>Discount</div>
+        <div></div>
+      </TableHeader>
 
-      {/* {cabins.map((cabin) => (
-            <CabinRow key={cabin.id} cabin={cabin} />
-            ))} */}
+      {cabins.map((cabin) => (
+        <CabinRow key={cabin.id} cabin={cabin} />
+      ))}
+    </Table>
 
-      {/* Render props! */}
-      {/* <Table.Body
-          data={sortedCabins}
-          // render={(cabin) => <CabinRow key={cabin.id} cabin={cabin} />}
-          /> */}
-      {/* // </Menus> */}
-    </>
+    // {/* Render props! */}
+    // {/* <Table.Body
+    //     data={sortedCabins}
+    //     // render={(cabin) => <CabinRow key={cabin.id} cabin={cabin} />}
+    //     /> */}
+    // {/* // </Menus> */}
   );
 }
 

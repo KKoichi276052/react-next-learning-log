@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledTable = styled.div`
+export const Table = styled.div`
   border: 1px solid var(--color-grey-200);
 
   font-size: 1.4rem;
@@ -57,3 +57,5 @@ export const Empty = styled.p`
   text-align: center;
   margin: 2.4rem;
 `;
+
+export default Table;
