@@ -89,6 +89,7 @@ function CabinRow({ cabin }) {
       ) : (
         <span>&mdash;</span>
       )}
+      <button>Delete</button>
     </TableRow>
     // <Table.Row role="row">
 
