@@ -5,10 +5,6 @@ import { getCabins } from '../services/apiCabins';
 import CabinTable from '../features/cabins/CabinTable';
 
 function Cabins() {
-  useEffect(() => {
-    getCabins().then((data) => console.log(data));
-  }, []);
-
   return (
     <>
       <Row type="horizontal">

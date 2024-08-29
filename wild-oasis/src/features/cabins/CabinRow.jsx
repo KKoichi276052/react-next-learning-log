@@ -1,3 +1,4 @@
+import { useQueryClient, useMutation } from '@tanstack/react-query';
 import styled from 'styled-components';
 import { HiPencil, HiTrash, HiSquare2Stack } from 'react-icons/hi2';
 
@@ -7,6 +8,9 @@ import ConfirmDelete from '../../ui/ConfirmDelete';
 import Table from '../../ui/Table';
 
 import { formatCurrency } from '../../utils/helpers';
+import { deleteCabin } from '../../services/apiCabins';
+import toast from 'react-hot-toast';
+
 // import { useDeleteCabin } from './useDeleteCabin';
 // import { useCreateCabin } from './useCreateCabin';
 // import CreateCabinForm from './CreateCabinForm';
@@ -64,6 +68,22 @@ function CabinRow({ cabin }) {
     description,
   } = cabin;
 
+  const queryClient = useQueryClient();
+
+  const { isLoading: isDeleting, mutate } = useMutation({
+    mutationFn: deleteCabin,
+    onSuccess: () => {
+      toast.success('Cabin successfully deleted');
+
+      queryClient.invalidateQueries({
+        queryKey: ['cabins'],
+      });
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
   // const { mutate: deleteCabin, isLoading: isDeleting } = useDeleteCabin();
   // const { mutate: createCabin } = useCreateCabin();
 
@@ -89,7 +109,9 @@ function CabinRow({ cabin }) {
       ) : (
         <span>&mdash;</span>
       )}
-      <button>Delete</button>
+      <button onClick={() => mutate(cabinId)} disabled={isDeleting}>
+        Delete
+      </button>
     </TableRow>
     // <Table.Row role="row">
 

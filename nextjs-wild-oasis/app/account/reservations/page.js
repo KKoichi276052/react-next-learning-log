@@ -1,4 +1,9 @@
-import ReservationCard from "./ReservationCard";
+import ReservationCard from '@/app/_components/ReservationCard';
+
+export const metadata = {
+  // title: 'The Wild Oasis',
+  title: 'Reservations',
+};
 
 export default function Page() {
   // CHANGE
@@ -12,7 +17,7 @@ export default function Page() {
 
       {bookings.length === 0 ? (
         <p className="text-lg">
-          You have no reservations yet. Check out our{" "}
+          You have no reservations yet. Check out our{' '}
           <a className="underline text-accent-500" href="/cabins">
             luxury cabins &rarr;
           </a>
