@@ -1,13 +1,16 @@
 import { useForm } from 'react-hook-form';
 
-import { useCreateCabin } from 'features/cabins/useCreateCabin';
-import FormRow from 'ui/FormRow';
-import Input from 'ui/Input';
-import Form from 'ui/Form';
-import Button from 'ui/Button';
-import FileInput from 'ui/FileInput';
-import { useEditCabin } from './useEditCabin';
-import { Textarea } from 'ui/Textarea';
+// import { useCreateCabin } from 'features/cabins/useCreateCabin';
+import FormRow from '../../ui/FormRow';
+import Input from '../../ui/Input';
+import Form from '../../ui/Form';
+import Button from '../../ui/Button';
+import FileInput from '../../ui/FileInput';
+// import { useEditCabin } from './useEditCabin';
+import { Textarea } from '../../ui/Textarea';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
+import { createCabin } from '../../services/apiCabins';
 
 // We use react-hook-form to make working with complex and REAL-WORLD forms a lot easier. It handles stuff like user validation and errors. manages the form state for us, etc
 // Validating the user’s data passed through the form is a crucial responsibility for a developer.
@@ -15,9 +18,24 @@ import { Textarea } from 'ui/Textarea';
 
 // Receives closeModal directly from Modal
 function CreateCabinForm({ cabinToEdit, closeModal }) {
-  const { mutate: createCabin, isLoading: isCreating } = useCreateCabin();
-  const { mutate: editCabin, isLoading: isEditing } = useEditCabin();
-  const isWorking = isCreating || isEditing;
+  // const { mutate: createCabin, isLoading: isCreating } = useCreateCabin();
+  // const { mutate: editCabin, isLoading: isEditing } = useEditCabin();
+  // const isWorking = isCreating || isEditing;
+  const queryClient = useQueryClient();
+  const { isLoading: isCreating, mutate } = useMutation({
+    mutationFn: createCabin,
+    onSuccess: () => {
+      toast.success('Cabin successfully deleted');
+
+      queryClient.invalidateQueries({
+        queryKey: ['cabins'],
+      });
+      reset();
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
 
   // For an editing session
   const { id: editId, ...editValues } = cabinToEdit || {};
@@ -34,25 +52,27 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
   const onSubmit = function (data) {
     // No need to validate here, because it's already been done. This is REALLY nice!
 
-    const options = {
-      onSuccess: (data) => {
-        // If this component is used OUTSIDE the Modal Context, this will return undefined, so we need to test for this
-        closeModal?.();
-        reset();
-      },
-    };
+    mutate({ ...data, image: data.image[0] }); // TMP
 
-    const image = typeof data.image === 'object' ? data.image[0] : data.image;
+    // const options = {
+    //   onSuccess: (data) => {
+    //     // If this component is used OUTSIDE the Modal Context, this will return undefined, so we need to test for this
+    //     closeModal?.();
+    //     reset();
+    //   },
+    // };
 
-    if (isEditSession)
-      editCabin(
-        {
-          newCabinData: { ...data, image },
-          id: editId,
-        },
-        options
-      );
-    else createCabin({ ...data, image }, options);
+    // const image = typeof data.image === 'object' ? data.image[0] : data.image;
+
+    // if (isEditSession)
+    //   editCabin(
+    //     {
+    //       newCabinData: { ...data, image },
+    //       id: editId,
+    //     },
+    //     options
+    //   );
+    // else createCabin({ ...data, image }, options);
   };
 
   // Invoked when validation fails
@@ -67,25 +87,25 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
   // "handleSubmit" will validate your inputs before invoking "onSubmit"
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)} type='modal'>
-      <FormRow label='Cabin name' error={errors?.name?.message}>
+    <Form onSubmit={handleSubmit(onSubmit, onError)} type="modal">
+      <FormRow label="Cabin name" error={errors?.name?.message}>
         {/* register your input into the hook by invoking the "register" function */}
         {/* why the ...? Because this will return an object { onChange, onBlur, customer, ref }, and by spreading we then add all these to the element [show dev tools] */}
         {/* include validation with required or other standard HTML validation rules: required, min, max, minLength, maxLength, pattern, validate */}
         {/* errors will return when field validation fails  */}
         <Input
-          type='text'
-          id='name'
-          disabled={isWorking}
+          type="text"
+          id="name"
+          // disabled={isWorking}
           {...register('name', { required: 'This field is required' })}
         />
       </FormRow>
 
-      <FormRow label='Maximum capacity' error={errors?.maxCapacity?.message}>
+      <FormRow label="Maximum capacity" error={errors?.maxCapacity?.message}>
         <Input
-          type='number'
-          id='maxCapacity'
-          disabled={isWorking}
+          type="number"
+          id="maxCapacity"
+          // disabled={isWorking}
           {...register('maxCapacity', {
             required: 'This field is required',
             min: {
@@ -96,11 +116,11 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
         />
       </FormRow>
 
-      <FormRow label='Regular price' error={errors?.regularPrice?.message}>
+      <FormRow label="Regular price" error={errors?.regularPrice?.message}>
         <Input
-          type='number'
-          id='regularPrice'
-          disabled={isWorking}
+          type="number"
+          id="regularPrice"
+          // disabled={isWorking}
           {...register('regularPrice', {
             required: 'This field is required',
             min: {
@@ -111,12 +131,12 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
         />
       </FormRow>
 
-      <FormRow label='Discount' error={errors?.discount?.message}>
+      <FormRow label="Discount" error={errors?.discount?.message}>
         <Input
-          type='number'
-          id='discount'
+          type="number"
+          id="discount"
           defaultValue={0}
-          disabled={isWorking}
+          // disabled={isWorking}
           {...register('discount', {
             required: "Can't be empty, make it at least 0",
             validate: (value) =>
@@ -127,23 +147,23 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
       </FormRow>
 
       <FormRow
-        label='Description for website'
+        label="Description for website"
         error={errors?.description?.message}
       >
         <Textarea
-          type='number'
-          id='description'
-          defaultValue=''
-          disabled={isWorking}
+          type="number"
+          id="description"
+          defaultValue=""
+          // disabled={isWorking}
           {...register('description', { required: 'This field is required' })}
         />
       </FormRow>
 
-      <FormRow label='Cabin photo' error={errors?.image?.message}>
+      <FormRow label="Cabin photo" error={errors?.image?.message}>
         <FileInput
-          id='image'
-          accept='image/*'
-          disabled={isWorking}
+          id="image"
+          accept="image/*"
+          // disabled={isWorking}
           {...register('image', {
             // required: 'This field is required',
             required: isEditSession ? false : 'This field is required',
@@ -158,15 +178,17 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
       <FormRow>
         {/* type is an HTML attribute! */}
         <Button
-          variation='secondary'
-          type='reset'
-          disabled={isWorking}
+          variation="secondary"
+          type="reset"
+          // disabled={isWorking}
           onClick={() => closeModal?.()}
         >
           Cancel
         </Button>
-        <Button disabled={isWorking}>
-          {isEditSession ? 'Edit cabin' : 'Create new cabin'}
+        <Button disabled={isCreating}>
+          {/* <Button disabled={isWorking}> */}
+          {/* {isEditSession ? 'Edit cabin' : 'Create new cabin'} */}
+          Add cabin
         </Button>
       </FormRow>
     </Form>
