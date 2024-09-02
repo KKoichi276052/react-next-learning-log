@@ -1,68 +1,85 @@
 import { useForm } from 'react-hook-form';
-
-// import { useCreateCabin } from 'features/cabins/useCreateCabin';
 import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
 import Form from '../../ui/Form';
 import Button from '../../ui/Button';
 import FileInput from '../../ui/FileInput';
-// import { useEditCabin } from './useEditCabin';
 import { Textarea } from '../../ui/Textarea';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
-import { createCabin } from '../../services/apiCabins';
+import { useEditCabin } from './useEditCabin';
+import { useCreateCabin } from './useCreateCabin';
 
 // We use react-hook-form to make working with complex and REAL-WORLD forms a lot easier. It handles stuff like user validation and errors. manages the form state for us, etc
 // Validating the user’s data passed through the form is a crucial responsibility for a developer.
 // React Hook Form takes a slightly different approach than other form libraries in the React ecosystem by adopting the use of uncontrolled inputs using ref instead of depending on the state to control the inputs. This approach makes the forms more performant and reduces the number of re-renders.
 
 // Receives closeModal directly from Modal
-function CreateCabinForm({ cabinToEdit, closeModal }) {
-  // const { mutate: createCabin, isLoading: isCreating } = useCreateCabin();
-  // const { mutate: editCabin, isLoading: isEditing } = useEditCabin();
-  // const isWorking = isCreating || isEditing;
-  const queryClient = useQueryClient();
-  const { isLoading: isCreating, mutate } = useMutation({
-    mutationFn: createCabin,
-    onSuccess: () => {
-      toast.success('Cabin successfully deleted');
-
-      queryClient.invalidateQueries({
-        queryKey: ['cabins'],
-      });
-      reset();
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
+function CreateCabinForm({ cabinToEdit = {}, closeModal }) {
+  const { mutate: createCabin, isLoading: isCreating } = useCreateCabin();
+  const { mutate: editCabin, isLoading: isEditing } = useEditCabin();
 
   // For an editing session
   const { id: editId, ...editValues } = cabinToEdit || {};
   delete editValues.created_at;
   const isEditSession = Boolean(editId);
 
-  // One of the key concepts in React Hook Form is to register your component into the hook. This will make its value available for both the form validation and submission.
   const { register, handleSubmit, formState, reset, getValues } = useForm({
     defaultValues: isEditSession ? editValues : {},
   });
+
+  //   mutationFn: createEditCabin,
+  //   onSuccess: () => {
+  //     toast.success('Cabin successfully created');
+
+  //     queryClient.invalidateQueries({
+  //       queryKey: ['cabins'],
+  //     });
+  //     reset();
+  //   },
+  //   onError: (error) => {
+  //     toast.error(error.message);
+  //   },
+  // });
+
+  // const { mutate: editCabin, isLoading: isEditing } = useMutation({
+  //   mutationFn: ({ newCabinData, id }) => createEditCabin(newCabinData, id),
+  //   onSuccess: () => {
+  //     toast.success('Cabin successfully Updated');
+
+  //     queryClient.invalidateQueries({
+  //       queryKey: ['cabins'],
+  //     });
+  //     reset();
+  //   },
+  //   onError: (error) => {
+  //     toast.error(error.message);
+  //   },
+  // });
+
+  const isWorking = isCreating || isEditing;
   const { errors } = formState;
 
-  // Invoked in ALL validation passes. Here we get access to the form data
+  // No need to validate here, because it's already been done.
   const onSubmit = function (data) {
-    // No need to validate here, because it's already been done. This is REALLY nice!
+    const image = typeof data.image === 'string' ? data.image : data.image[0];
 
-    mutate({ ...data, image: data.image[0] }); // TMP
-
-    // const options = {
-    //   onSuccess: (data) => {
-    //     // If this component is used OUTSIDE the Modal Context, this will return undefined, so we need to test for this
-    //     closeModal?.();
-    //     reset();
-    //   },
-    // };
-
-    // const image = typeof data.image === 'object' ? data.image[0] : data.image;
+    if (isEditSession)
+      editCabin(
+        { newCabinData: { ...data, image }, id: editId },
+        {
+          onSuccess: (data) => {
+            reset();
+          },
+        }
+      );
+    else
+      createCabin(
+        { ...data, image: image },
+        {
+          onSuccess: (data) => {
+            reset();
+          },
+        }
+      );
 
     // if (isEditSession)
     //   editCabin(
@@ -73,6 +90,14 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
     //     options
     //   );
     // else createCabin({ ...data, image }, options);
+
+    // const options = {
+    //   onSuccess: (data) => {
+    //     // If this component is used OUTSIDE the Modal Context, this will return undefined, so we need to test for this
+    //     closeModal?.();
+    //     reset();
+    //   },
+    // };
   };
 
   // Invoked when validation fails
@@ -87,7 +112,7 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
   // "handleSubmit" will validate your inputs before invoking "onSubmit"
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)} type="modal">
+    <Form onSubmit={handleSubmit(onSubmit, onError)}>
       <FormRow label="Cabin name" error={errors?.name?.message}>
         {/* register your input into the hook by invoking the "register" function */}
         {/* why the ...? Because this will return an object { onChange, onBlur, customer, ref }, and by spreading we then add all these to the element [show dev tools] */}
@@ -96,7 +121,7 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
         <Input
           type="text"
           id="name"
-          // disabled={isWorking}
+          disabled={isWorking}
           {...register('name', { required: 'This field is required' })}
         />
       </FormRow>
@@ -105,7 +130,7 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
         <Input
           type="number"
           id="maxCapacity"
-          // disabled={isWorking}
+          disabled={isWorking}
           {...register('maxCapacity', {
             required: 'This field is required',
             min: {
@@ -120,7 +145,7 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
         <Input
           type="number"
           id="regularPrice"
-          // disabled={isWorking}
+          disabled={isWorking}
           {...register('regularPrice', {
             required: 'This field is required',
             min: {
@@ -136,7 +161,7 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
           type="number"
           id="discount"
           defaultValue={0}
-          // disabled={isWorking}
+          disabled={isWorking}
           {...register('discount', {
             required: "Can't be empty, make it at least 0",
             validate: (value) =>
@@ -154,7 +179,7 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
           type="number"
           id="description"
           defaultValue=""
-          // disabled={isWorking}
+          disabled={isWorking}
           {...register('description', { required: 'This field is required' })}
         />
       </FormRow>
@@ -163,9 +188,8 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
         <FileInput
           id="image"
           accept="image/*"
-          // disabled={isWorking}
+          disabled={isWorking}
           {...register('image', {
-            // required: 'This field is required',
             required: isEditSession ? false : 'This field is required',
 
             // VIDEO this doesn't work, so never mind about this, it's too much
@@ -180,15 +204,13 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
         <Button
           variation="secondary"
           type="reset"
-          // disabled={isWorking}
+          disabled={isWorking}
           onClick={() => closeModal?.()}
         >
           Cancel
         </Button>
-        <Button disabled={isCreating}>
-          {/* <Button disabled={isWorking}> */}
-          {/* {isEditSession ? 'Edit cabin' : 'Create new cabin'} */}
-          Add cabin
+        <Button disabled={isWorking}>
+          {isEditSession ? 'Edit cabin' : 'Create new cabin'}
         </Button>
       </FormRow>
     </Form>
