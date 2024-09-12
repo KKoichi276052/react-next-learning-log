@@ -1,6 +1,7 @@
 export const metadata = {
   title: 'Cabins',
 };
+export const revalidate = 0;
 
 import { Suspense } from 'react';
 import CabinList from '../_components/CabinList';

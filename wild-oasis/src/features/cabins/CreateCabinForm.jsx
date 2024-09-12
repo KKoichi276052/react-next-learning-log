@@ -13,7 +13,7 @@ import { useCreateCabin } from './useCreateCabin';
 // React Hook Form takes a slightly different approach than other form libraries in the React ecosystem by adopting the use of uncontrolled inputs using ref instead of depending on the state to control the inputs. This approach makes the forms more performant and reduces the number of re-renders.
 
 // Receives closeModal directly from Modal
-function CreateCabinForm({ cabinToEdit = {}, closeModal }) {
+function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { mutate: createCabin, isLoading: isCreating } = useCreateCabin();
   const { mutate: editCabin, isLoading: isEditing } = useEditCabin();
 
@@ -76,6 +76,7 @@ function CreateCabinForm({ cabinToEdit = {}, closeModal }) {
         { ...data, image: image },
         {
           onSuccess: (data) => {
+            onCloseModal?.();
             reset();
           },
         }
@@ -112,7 +113,10 @@ function CreateCabinForm({ cabinToEdit = {}, closeModal }) {
   // "handleSubmit" will validate your inputs before invoking "onSubmit"
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit, onError)}
+      type={onCloseModal ? 'modal' : 'regular'}
+    >
       <FormRow label="Cabin name" error={errors?.name?.message}>
         {/* register your input into the hook by invoking the "register" function */}
         {/* why the ...? Because this will return an object { onChange, onBlur, customer, ref }, and by spreading we then add all these to the element [show dev tools] */}
@@ -205,7 +209,7 @@ function CreateCabinForm({ cabinToEdit = {}, closeModal }) {
           variation="secondary"
           type="reset"
           disabled={isWorking}
-          onClick={() => closeModal?.()}
+          onClick={() => onCloseModal?.()}
         >
           Cancel
         </Button>
