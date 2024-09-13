@@ -1,6 +1,9 @@
-import { isWithinInterval } from "date-fns";
-import { DayPicker } from "react-day-picker";
-import "react-day-picker/dist/style.css";
+'use client';
+
+import { isWithinInterval } from 'date-fns';
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
+import { useReservation } from './ReservationContext';
 
 function isAlreadyBooked(range, datesArr) {
   return (
@@ -12,17 +15,16 @@ function isAlreadyBooked(range, datesArr) {
   );
 }
 
-function DateSelector() {
+function DateSelector({ settings, bookedDates, cabin }) {
   // CHANGE
   const regularPrice = 23;
   const discount = 23;
   const numNights = 23;
   const cabinPrice = 23;
-  const range = { from: null, to: null };
+  const { range, setRange, resetRange } = useReservation();
 
   // SETTINGS
-  const minBookingLength = 1;
-  const maxBookingLength = 23;
+  const { minBookingLength, maxBookingLength } = settings;
 
   return (
     <div className="flex flex-col justify-between">
@@ -31,6 +33,8 @@ function DateSelector() {
         mode="range"
         min={minBookingLength + 1}
         max={maxBookingLength}
+        onSelect={setRange}
+        selected={range}
         fromMonth={new Date()}
         fromDate={new Date()}
         toYear={new Date().getFullYear() + 5}
@@ -59,7 +63,7 @@ function DateSelector() {
                 <span>&times;</span> <span>{numNights}</span>
               </p>
               <p>
-                <span className="text-lg font-bold uppercase">Total</span>{" "}
+                <span className="text-lg font-bold uppercase">Total</span>{' '}
                 <span className="text-2xl font-semibold">${cabinPrice}</span>
               </p>
             </>
