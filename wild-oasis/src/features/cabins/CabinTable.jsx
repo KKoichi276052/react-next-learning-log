@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import CabinRow from './CabinRow';
 import Spinner from '../../ui/Spinner';
 import Table from '../../ui/Table';
 import Menus from '../../ui/Menus';
 // import Empty from '../../ui/Empty';
 import { useCabins } from './useCabins';
-// import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 // import { Suspense } from 'react';
 
 // v2
@@ -40,21 +40,12 @@ function CabinTable() {
   // // Now, everything that's inside a Suspense will be treated as just one unit, so when just one component of the child components is currently suspended, all of them will be replaced with the fallback. We can nest multiple Suspense boundaries, and the closest one will be shown. This way, when we have a big Suspense on the top on the tree, it won't have to WAIT
 
   // const { cabins } = useCabins();
-  // const [searchParams] = useSearchParams();
 
   // // if (isLoading) return <Spinner />;
   // // if (!cabins) return <Empty resource={'cabins'} />;
 
   // // 1) Filter
   // const filterValue = searchParams.get('discount') || 'all';
-
-  // // This is probably not the most efficient way, but that doesn't matter
-  // let filteredCabins;
-  // if (filterValue === 'all') filteredCabins = cabins;
-  // if (filterValue === 'no-discount')
-  //   filteredCabins = cabins.filter((cabin) => cabin.discount === 0);
-  // if (filterValue === 'with-discount')
-  //   filteredCabins = cabins.filter((cabin) => cabin.discount > 0);
 
   // // 2) SortBy
   // const sortBy = searchParams.get('sortBy') || 'startDate-asc';
@@ -69,8 +60,31 @@ function CabinTable() {
   // );
 
   const { isLoading, cabins } = useCabins();
+  const [searchParams] = useSearchParams();
 
   if (isLoading) return <Spinner />;
+
+  const filterValue = searchParams.get('discount') || 'all';
+
+  const filterMap = {
+    all: () => cabins,
+    'no-discount': () => cabins.filter((cabin) => cabin.discount === 0),
+    'with-discount': () => cabins.filter((cabin) => cabin.discount > 0),
+  };
+  const filteredCabins = filterMap[filterValue]() || cabins;
+
+  // other way ofAbove
+  // const filteredCabins = (() => {
+  //   switch (filterValue) {
+  //     case 'no-discount':
+  //       return cabins.filter(cabin => cabin.discount === 0);
+  //     case 'with-discount':
+  //       return cabins.filter(cabin => cabin.discount > 0);
+  //     case 'all':
+  //     default:
+  //       return cabins;
+  //   }
+  // })();
 
   return (
     <Menus>
@@ -91,7 +105,7 @@ function CabinTable() {
       ))} */}
         {/* Render props! */}
         <Table.Body
-          data={cabins}
+          data={filteredCabins}
           render={(cabin) => <CabinRow key={cabin.id} cabin={cabin} />}
         />
       </Table>
