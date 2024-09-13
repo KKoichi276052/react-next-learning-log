@@ -86,6 +86,13 @@ function CabinTable() {
   //   }
   // })();
 
+  const sortBy = searchParams.get('sortBy') || 'startDate-asc';
+  const [field, direction] = sortBy.split('-');
+  const modifier = direction === 'asc' ? 1 : -1;
+  const sortedCabins = filteredCabins.sort(
+    (a, b) => (a[field] - b[field]) * modifier
+  );
+
   return (
     <Menus>
       {/* A beautiful API we created here! We could even have defined the widths on the columns in the table header individually, but this keeps it simpler, and I also really like it */}
@@ -105,7 +112,7 @@ function CabinTable() {
       ))} */}
         {/* Render props! */}
         <Table.Body
-          data={filteredCabins}
+          data={sortedCabins}
           render={(cabin) => <CabinRow key={cabin.id} cabin={cabin} />}
         />
       </Table>
