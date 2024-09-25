@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { format, isToday } from 'date-fns';
 
-// import { box } from '../../styles/GlobalStyles';
+import { box } from '../../styles/GlobalStyles';
 import { formatDistanceFromNow } from '../../utils/helpers';
 // import { isToday } from 'date-fns/esm';
 import { formatCurrency } from '../../utils/helpers';
@@ -15,7 +15,7 @@ import DataItem from '../../ui/DataItem';
 import { Flag } from '../../ui/Flag';
 
 const StyledBookingDataBox = styled.section`
-  padding: 3.2rem 4rem;
+  // ${box} /* padding: 3.2rem 4rem; */
   overflow: hidden;
 `;
 
