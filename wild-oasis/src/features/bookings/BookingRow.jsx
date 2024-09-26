@@ -125,7 +125,7 @@ function BookingRow({
               See details
             </Menus.Button>
 
-            {/* {status === 'unconfirmed' && (
+            {status === 'unconfirmed' && (
               <Menus.Button
                 onClick={() => navigate(`/checkin/${bookingId}`)}
                 icon={<HiArrowDownOnSquare />}
@@ -144,7 +144,7 @@ function BookingRow({
               </Menus.Button>
             )}
 
-            <Menus.Button icon={<HiPencil />}>Edit booking</Menus.Button> */}
+            <Menus.Button icon={<HiPencil />}>Edit booking</Menus.Button>
             {/* <Menus.Button>Delete</Menus.Button> */}
 
             {/* Now it gets a bit confusing... */}
