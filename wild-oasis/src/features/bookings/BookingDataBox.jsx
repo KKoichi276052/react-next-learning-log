@@ -15,8 +15,9 @@ import DataItem from '../../ui/DataItem';
 import { Flag } from '../../ui/Flag';
 
 const StyledBookingDataBox = styled.section`
-  padding: 3.2rem 4rem;
   overflow: hidden;
+  background-color: white;
+  border-radius: 0.5rem;
 `;
 
 const Header = styled.header`

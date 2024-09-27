@@ -21,6 +21,8 @@ import { useSettings } from '../../features/settings/useSettings';
 
 const Box = styled.div`
   padding: 2.4rem 4rem;
+  background-color: white;
+  border-radius: 0.5rem;
 `;
 
 function CheckinBooking() {
@@ -52,18 +54,18 @@ function CheckinBooking() {
 
   function handleCheckin() {
     if (!confirmPaid) return;
-    checkin(bookingId);
+    // checkin(bookingId);
 
-    // if (addBreakfast)
-    //   checkin({
-    //     bookingId,
-    //     breakfast: {
-    //       hasBreakfast: true,
-    //       extrasPrice: optionalBreakfastPrice,
-    //       totalPrice: totalPrice + optionalBreakfastPrice,
-    //     },
-    //   });
-    // else checkin({ bookingId, breakfast: {} });
+    if (addBreakfast)
+      checkin({
+        bookingId,
+        breakfast: {
+          hasBreakfast: true,
+          extrasPrice: optionalBreakfastPrice,
+          totalPrice: totalPrice + optionalBreakfastPrice,
+        },
+      });
+    else checkin({ bookingId, breakfast: {} });
   }
 
   // We return a fragment so that these elements fit into the page's layout
