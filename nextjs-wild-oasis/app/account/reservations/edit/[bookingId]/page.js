@@ -4,6 +4,7 @@ import { updateBooking } from '@/app/_lib/actions';
 export default async function Page({ params }) {
   const { bookingId } = params;
   const { numGuests, observations, cabinId } = await getBooking(bookingId);
+  console.log(numGuests, observations, cabinId);
   const { maxCapacity } = await getCabin(cabinId);
 
   return (
@@ -16,6 +17,8 @@ export default async function Page({ params }) {
         action={updateBooking}
         className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
       >
+        <input type="hidden" name="bookingId" value={bookingId} />
+
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>
           <select
