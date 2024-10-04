@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
-import Button from 'ui/Button';
-import Form from 'ui/Form';
-import FormRow from 'ui/FormRow';
-import Input from 'ui/Input';
+import Button from '../../ui/Button';
+import Form from '../../ui/Form';
+import FormRow from '../../ui/FormRow';
+import Input from '../../ui/Input';
 import { useUpdateUser } from './useUpdateUser';
 
 function UpdatePasswordForm() {
@@ -23,14 +23,14 @@ function UpdatePasswordForm() {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow
-        label='Password (min 8 characters)'
+        label="Password (min 8 characters)"
         error={errors?.password?.message}
       >
         <Input
-          type='password'
-          id='password'
+          type="password"
+          id="password"
           // this makes the form better for password managers
-          autoComplete='current-password'
+          autoComplete="current-password"
           disabled={isUpdating}
           {...register('password', {
             required: 'This field is required',
@@ -43,13 +43,13 @@ function UpdatePasswordForm() {
       </FormRow>
 
       <FormRow
-        label='Confirm password'
+        label="Confirm password"
         error={errors?.passwordConfirm?.message}
       >
         <Input
-          type='password'
-          autoComplete='new-password'
-          id='passwordConfirm'
+          type="password"
+          autoComplete="new-password"
+          id="passwordConfirm"
           disabled={isUpdating}
           {...register('passwordConfirm', {
             required: 'This field is required',
@@ -59,7 +59,7 @@ function UpdatePasswordForm() {
         />
       </FormRow>
       <FormRow>
-        <Button onClick={handleReset} type='reset' variation='secondary'>
+        <Button onClick={handleReset} type="reset" variation="secondary">
           Cancel
         </Button>
         <Button disabled={isUpdating}>Update password</Button>

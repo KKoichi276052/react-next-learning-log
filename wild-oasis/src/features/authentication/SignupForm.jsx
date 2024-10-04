@@ -14,6 +14,11 @@ function SignupForm() {
     signup({ fullName, email, password }, { onSettled: reset });
   }
 
+  function handleReset(e) {
+    // e.preventDefault();
+    reset();
+  }
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow label="Full name" error={errors.fullName?.message}>
@@ -69,10 +74,10 @@ function SignupForm() {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button onClick={handleReset} variation="secondary" type="reset">
           Cancel
         </Button>
-        <Button>Create new user</Button>
+        <Button disabled={isLoading}>Create new user</Button>
       </FormRow>
     </Form>
   );
