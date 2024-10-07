@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { updateGuest } from '../_lib/actions';
-import SubmitButton from '../../ui/SubmitButton';
+import SubmitButton from './SubmitButton';
 
 function UpdateProfileForm({ guest, children }) {
   const [country, setCountry] = useState('');
