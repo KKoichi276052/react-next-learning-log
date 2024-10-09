@@ -8,6 +8,8 @@ const StyledStat = styled.div`
   grid-template-rows: auto auto;
   column-gap: 1.6rem;
   row-gap: 0.4rem;
+  background-color: var(--color-grey-0);
+  border-radius: var(--border-radius-lg);
 `;
 
 const Icon = styled.div`

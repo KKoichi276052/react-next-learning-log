@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-// import DurationChart from './DurationChart';
-// import SalesChart from './SalesChart';
+import DurationChart from './DurationChart';
+import SalesChart from './SalesChart';
 import Stats from './Stats';
-// import TodayActivity from 'features/check-in-out/TodayActivity';
+import TodayActivity from '../../features/check-in-out/TodayActivity';
 import { useRecentBookings } from './useRecentBookings';
 import Spinner from '../../ui/Spinner';
 import { useRecentStays } from './useRecentStays';
@@ -23,8 +23,13 @@ We need to distinguish between two types of data here:
 */
 
 function DashboardLayout() {
-  const { isLoading: isLoading1, bookings, numDays } = useRecentBookings();
-  const { isLoading: isLoading2, stays, confirmedStays } = useRecentStays();
+  const { isLoading: isLoading1, bookings } = useRecentBookings();
+  const {
+    isLoading: isLoading2,
+    stays,
+    confirmedStays,
+    numDays,
+  } = useRecentStays();
   const { isLoading: isLoading3, cabins } = useCabins();
 
   if (isLoading1 || isLoading2 || isLoading3) return <Spinner />;
@@ -37,9 +42,9 @@ function DashboardLayout() {
         numDays={numDays}
         cabinCount={cabins.length}
       />
-      {/* <TodayActivity />
+      <TodayActivity />
       <DurationChart confirmedStays={confirmedStays} />
-      <SalesChart bookings={bookings} numDays={numDays} /> */}
+      <SalesChart bookings={bookings} numDays={numDays} />
     </StyledDashboardLayout>
   );
 }

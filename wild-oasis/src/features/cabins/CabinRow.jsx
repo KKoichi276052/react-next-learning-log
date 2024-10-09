@@ -66,7 +66,7 @@ function CabinRow({ cabin }) {
   } = cabin;
 
   const { mutate: deleteCabin, isLoading: isDeleting } = useDeleteCabin();
-  const { mutate: createCabin } = useCreateCabin();
+  const { mutate: createCabin, isLoading: isCreating } = useCreateCabin();
 
   function handleDuplicate() {
     createCabin({
@@ -99,6 +99,7 @@ function CabinRow({ cabin }) {
                 <Menus.Button
                   icon={<HiSquare2Stack />}
                   onClick={handleDuplicate}
+                  disabled={isCreating}
                 >
                   Duplicate
                 </Menus.Button>
@@ -107,7 +108,9 @@ function CabinRow({ cabin }) {
                 </Modal.Open>
 
                 <Modal.Open opens="delete">
-                  <Menus.Button icon={<HiTrash />}>Delete cabin</Menus.Button>
+                  <Menus.Button disabled={isDeleting} icon={<HiTrash />}>
+                    Delete cabin
+                  </Menus.Button>
                 </Modal.Open>
               </Menus.List>
 

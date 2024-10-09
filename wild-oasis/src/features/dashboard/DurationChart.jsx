@@ -1,4 +1,4 @@
-import { useDarkMode } from 'context/DarkModeContext';
+import { useDarkMode } from '../../context/DarkModeContext';
 import {
   Cell,
   Legend,
@@ -8,13 +8,13 @@ import {
   Tooltip,
 } from 'recharts';
 import styled from 'styled-components';
-import { box } from 'styles/styles';
-import Heading from 'ui/Heading';
+// import { box } from 'styles/styles';
+import Heading from '../../ui/Heading';
 
 const ChartBox = styled.div`
-  ${box}
   padding: 2.4rem 3.2rem;
-
+  background-color: var(--color-grey-0);
+  border-radius: var(--border-radius-lg);
   grid-column: 3 / span 2;
 
   & .recharts-pie-label-text {
@@ -291,18 +291,18 @@ function DurationChart({ confirmedStays }) {
 
   return (
     <ChartBox>
-      <Heading type='h2'>Stay duration summary</Heading>
-      <ResponsiveContainer width='100%' height={240}>
+      <Heading type="h2">Stay duration summary</Heading>
+      <ResponsiveContainer width="100%" height={240}>
         <PieChart>
           <Pie
             data={data}
-            nameKey='duration'
-            dataKey='value'
-            cx='40%'
-            cy='50%'
+            nameKey="duration"
+            dataKey="value"
+            cx="40%"
+            cy="50%"
             innerRadius={85}
             outerRadius={110}
-            fill='#4f46e5'
+            fill="#4f46e5"
             paddingAngle={3}
             startAngle={180}
             endAngle={-180}
@@ -319,12 +319,12 @@ function DurationChart({ confirmedStays }) {
           <Legend
             // verticalAlign='bottom'
             // align='center'
-            verticalAlign='middle'
-            align='right'
-            width='30%'
-            layout='vertical'
+            verticalAlign="middle"
+            align="right"
+            width="30%"
+            layout="vertical"
             iconSize={15}
-            iconType='circle'
+            iconType="circle"
           />
         </PieChart>
       </ResponsiveContainer>
