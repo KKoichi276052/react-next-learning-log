@@ -1,4 +1,4 @@
-### Next App
+\*\*\*\*### Next App
 
 ```sh
 
@@ -16,7 +16,7 @@ npm run dev
 
 ```tsx
 function HomePage() {
-  return <h1 className='text-3xl'>HomePage</h1>;
+  return <h1 className="text-3xl">HomePage</h1>;
 }
 export default HomePage;
 ```
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 
 ```tsx
 function BookingsPage() {
-  return <h1 className='text-3xl'>BookingsPage</h1>;
+  return <h1 className="text-3xl">BookingsPage</h1>;
 }
 export default BookingsPage;
 ```
@@ -75,8 +75,8 @@ import { Button } from '@/components/ui/button';
 function HomePage() {
   return (
     <div>
-      <h1 className='text-3xl'>HomePage</h1>
-      <Button variant='outline' size='lg' className='capitalize m-8'>
+      <h1 className="text-3xl">HomePage</h1>
+      <Button variant="outline" size="lg" className="capitalize m-8">
         Click me
       </Button>
     </div>
@@ -130,11 +130,11 @@ import LinksDropdown from './LinksDropdown';
 import DarkMode from './DarkMode';
 function Navbar() {
   return (
-    <nav className='border-b'>
-      <div className='container flex flex-col sm:flex-row  sm:justify-between sm:items-center flex-wrap gap-4 py-8'>
+    <nav className="border-b">
+      <div className="container flex flex-col sm:flex-row  sm:justify-between sm:items-center flex-wrap gap-4 py-8">
         <Logo />
         <NavSearch />
-        <div className='flex gap-4 items-center '>
+        <div className="flex gap-4 items-center ">
           <DarkMode />
           <LinksDropdown />
         </div>
@@ -149,10 +149,10 @@ export default Navbar;
 import Navbar from '@/components/navbar/Navbar';
 
 return (
-  <html lang='en' suppressHydrationWarning>
+  <html lang="en" suppressHydrationWarning>
     <body className={inter.className}>
       <Navbar />
-      <main className='container py-10'>{children}</main>
+      <main className="container py-10">{children}</main>
     </body>
   </html>
 );
@@ -173,9 +173,9 @@ import { Button } from '../ui/button';
 
 function Logo() {
   return (
-    <Button size='icon' asChild>
-      <Link href='/'>
-        <LuTent className='w-6 h-6' />
+    <Button size="icon" asChild>
+      <Link href="/">
+        <LuTent className="w-6 h-6" />
       </Link>
     </Button>
   );
@@ -190,9 +190,9 @@ import { Input } from '../ui/input';
 function NavSearch() {
   return (
     <Input
-      type='search'
-      placeholder='find a property...'
-      className='max-w-xs dark:bg-muted '
+      type="search"
+      placeholder="find a property..."
+      className="max-w-xs dark:bg-muted "
     />
   );
 }
@@ -225,11 +225,11 @@ layout.tsx
 import Providers from './providers';
 
 return (
-  <html lang='en' suppressHydrationWarning>
+  <html lang="en" suppressHydrationWarning>
     <body className={inter.className}>
       <Providers>
         <Navbar />
-        <main className='container py-10'>{children}</main>
+        <main className="container py-10">{children}</main>
       </Providers>
     </body>
   </html>
@@ -267,8 +267,8 @@ import { ThemeProvider } from './theme-provider';
 function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider
-      attribute='class'
-      defaultTheme='system'
+      attribute="class"
+      defaultTheme="system"
       enableSystem
       disableTransitionOnChange
     >
@@ -304,13 +304,13 @@ export default function ModeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='outline' size='icon'>
-          <SunIcon className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
-          <MoonIcon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
-          <span className='sr-only'>Toggle theme</span>
+        <Button variant="outline" size="icon">
+          <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='end'>
+      <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme('light')}>
           Light
         </DropdownMenuItem>
@@ -332,7 +332,7 @@ export default function ModeToggle() {
 import { LuUser2 } from 'react-icons/lu';
 
 function UserIcon() {
-  return <LuUser2 className='w-6 h-6 bg-primary rounded-full text-white' />;
+  return <LuUser2 className="w-6 h-6 bg-primary rounded-full text-white" />;
 }
 export default UserIcon;
 ```
@@ -379,16 +379,16 @@ function LinksDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='outline' className='flex gap-4 max-w-[100px]'>
-          <LuAlignLeft className='w-6 h-6' />
+        <Button variant="outline" className="flex gap-4 max-w-[100px]">
+          <LuAlignLeft className="w-6 h-6" />
           <UserIcon />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='w-52' align='start' sideOffset={10}>
+      <DropdownMenuContent className="w-52" align="start" sideOffset={10}>
         {links.map((link) => {
           return (
             <DropdownMenuItem key={link.href}>
-              <Link href={link.href} className='capitalize w-full'>
+              <Link href={link.href} className="capitalize w-full">
                 {link.label}
               </Link>
             </DropdownMenuItem>
@@ -432,11 +432,11 @@ import { ClerkProvider } from '@clerk/nextjs';
 
 return (
   <ClerkProvider>
-    <html lang='en' suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers>
           <Navbar />
-          <main className='container py-10'>{children}</main>
+          <main className="container py-10">{children}</main>
         </Providers>
       </body>
     </html>
@@ -490,8 +490,8 @@ function Providers({ children }: { children: React.ReactNode }) {
     <>
       <Toaster />
       <ThemeProvider
-        attribute='class'
-        defaultTheme='system'
+        attribute="class"
+        defaultTheme="system"
         enableSystem
         disableTransitionOnChange
       >
@@ -519,8 +519,8 @@ function SignOutLink() {
     toast({ description: 'You have been signed out.' });
   };
   return (
-    <SignOutButton redirectUrl='/'>
-      <button className='w-full text-left' onClick={handleLogout}>
+    <SignOutButton redirectUrl="/">
+      <button className="w-full text-left" onClick={handleLogout}>
         Logout
       </button>
     </SignOutButton>
@@ -542,17 +542,17 @@ return (
 
 ```tsx
 return (
-  <DropdownMenuContent className='w-52' align='start' sideOffset={10}>
+  <DropdownMenuContent className="w-52" align="start" sideOffset={10}>
     <SignedOut>
       <DropdownMenuItem>
-        <SignInButton mode='modal'>
-          <button className='w-full text-left'>Login</button>
+        <SignInButton mode="modal">
+          <button className="w-full text-left">Login</button>
         </SignInButton>
       </DropdownMenuItem>
       <DropdownMenuSeparator />
       <DropdownMenuItem>
-        <SignUpButton mode='modal'>
-          <button className='w-full text-left'>Register</button>
+        <SignUpButton mode="modal">
+          <button className="w-full text-left">Register</button>
         </SignUpButton>
       </DropdownMenuItem>
     </SignedOut>
@@ -560,7 +560,7 @@ return (
       {links.map((link) => {
         return (
           <DropdownMenuItem key={link.href}>
-            <Link href={link.href} className='capitalize w-full'>
+            <Link href={link.href} className="capitalize w-full">
               {link.label}
             </Link>
           </DropdownMenuItem>
@@ -602,14 +602,14 @@ const createProfileAction = async (formData: FormData) => {
 function CreateProfile() {
   return (
     <section>
-      <h1 className='text-2xl font-semibold mb-8 capitalize'>new user</h1>
-      <div className='border p-8 rounded-md max-w-lg'>
+      <h1 className="text-2xl font-semibold mb-8 capitalize">new user</h1>
+      <div className="border p-8 rounded-md max-w-lg">
         <form action={createProfileAction}>
-          <div className='mb-2'>
-            <Label htmlFor='firstName'>First Name</Label>
-            <Input id='firstName' name='firstName' type='text' />
+          <div className="mb-2">
+            <Label htmlFor="firstName">First Name</Label>
+            <Input id="firstName" name="firstName" type="text" />
           </div>
-          <Button type='submit' size='lg'>
+          <Button type="submit" size="lg">
             Create Profile
           </Button>
         </form>
@@ -644,8 +644,8 @@ function FormInput({
   placeholder,
 }: FormInputProps) {
   return (
-    <div className='mb-2'>
-      <Label htmlFor={name} className='capitalize'>
+    <div className="mb-2">
+      <Label htmlFor={name} className="capitalize">
         {label || name}
       </Label>
       <Input
@@ -685,14 +685,14 @@ export function SubmitButton({
   const { pending } = useFormStatus();
   return (
     <Button
-      type='submit'
+      type="submit"
       disabled={pending}
       className={`capitalize ${className}`}
-      size='lg'
+      size="lg"
     >
       {pending ? (
         <>
-          <ReloadIcon className='mr-2 h-4 w-4 animate-spin' />
+          <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
           Please wait...
         </>
       ) : (
@@ -764,15 +764,15 @@ const createProfileAction = async (prevState: any, formData: FormData) => {
 function CreateProfile() {
   return (
     <section>
-      <h1 className='text-2xl font-semibold mb-8 capitalize'>new user</h1>
-      <div className='border p-8 rounded-md max-w-lg'>
+      <h1 className="text-2xl font-semibold mb-8 capitalize">new user</h1>
+      <div className="border p-8 rounded-md max-w-lg">
         <FormContainer action={createProfileAction}>
-          <div className='grid gap-4 mt-4 '>
-            <FormInput type='text' name='firstName' label='First Name' />
-            <FormInput type='text' name='lastName' label='Last Name' />
-            <FormInput type='text' name='username' label='Username' />
+          <div className="grid gap-4 mt-4 ">
+            <FormInput type="text" name="firstName" label="First Name" />
+            <FormInput type="text" name="lastName" label="Last Name" />
+            <FormInput type="text" name="username" label="Username" />
           </div>
-          <SubmitButton text='Create Profile' className='mt-8' />
+          <SubmitButton text="Create Profile" className="mt-8" />
         </FormContainer>
       </div>
     </section>
@@ -1104,9 +1104,9 @@ async function UserIcon() {
 
   if (profileImage)
     return (
-      <img src={profileImage} className='w-6 h-6 rounded-full object-cover' />
+      <img src={profileImage} className="w-6 h-6 rounded-full object-cover" />
     );
-  return <LuUser2 className='w-6 h-6 bg-primary rounded-full text-white' />;
+  return <LuUser2 className="w-6 h-6 bg-primary rounded-full text-white" />;
 }
 export default UserIcon;
 ```
@@ -1175,32 +1175,32 @@ async function ProfilePage() {
 
   return (
     <section>
-      <h1 className='text-2xl font-semibold mb-8 capitalize'>user profile</h1>
-      <div className='border p-8 rounded-md'>
+      <h1 className="text-2xl font-semibold mb-8 capitalize">user profile</h1>
+      <div className="border p-8 rounded-md">
         {/* image input container */}
 
         <FormContainer action={updateProfileAction}>
-          <div className='grid gap-4 md:grid-cols-2 mt-4 '>
+          <div className="grid gap-4 md:grid-cols-2 mt-4 ">
             <FormInput
-              type='text'
-              name='firstName'
-              label='First Name'
+              type="text"
+              name="firstName"
+              label="First Name"
               defaultValue={profile.firstName}
             />
             <FormInput
-              type='text'
-              name='lastName'
-              label='Last Name'
+              type="text"
+              name="lastName"
+              label="Last Name"
               defaultValue={profile.lastName}
             />
             <FormInput
-              type='text'
-              name='username'
-              label='Username'
+              type="text"
+              name="username"
+              label="Username"
               defaultValue={profile.username}
             />
           </div>
-          <SubmitButton text='Update Profile' className='mt-8' />
+          <SubmitButton text="Update Profile" className="mt-8" />
         </FormContainer>
       </div>
     </section>
@@ -1328,17 +1328,17 @@ import { Input } from '../ui/input';
 function ImageInput() {
   const name = 'image';
   return (
-    <div className='mb-2'>
-      <Label htmlFor={name} className='capitalize'>
+    <div className="mb-2">
+      <Label htmlFor={name} className="capitalize">
         Image
       </Label>
       <Input
         id={name}
         name={name}
-        type='file'
+        type="file"
         required
-        accept='image/*'
-        className='max-w-xs'
+        accept="image/*"
+        className="max-w-xs"
       />
     </div>
   );
@@ -1365,14 +1365,14 @@ export function SubmitButton({
   const { pending } = useFormStatus();
   return (
     <Button
-      type='submit'
+      type="submit"
       disabled={pending}
       className={`capitalize ${className}`}
       size={size}
     >
       {pending ? (
         <>
-          <ReloadIcon className='mr-2 h-4 w-4 animate-spin' />
+          <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
           Please wait...
         </>
       ) : (
@@ -1411,7 +1411,7 @@ function ImageInputContainer(props: ImageInputContainerProps) {
   const [isUpdateFormVisible, setUpdateFormVisible] = useState(false);
 
   const userIcon = (
-    <LuUser2 className='w-24 h-24 bg-primary rounded-md text-white mb-4' />
+    <LuUser2 className="w-24 h-24 bg-primary rounded-md text-white mb-4" />
   );
   return (
     <div>
@@ -1420,7 +1420,7 @@ function ImageInputContainer(props: ImageInputContainerProps) {
           src={image}
           width={100}
           height={100}
-          className='rounded-md object-cover mb-4 w-24 h-24'
+          className="rounded-md object-cover mb-4 w-24 h-24"
           alt={name}
         />
       ) : (
@@ -1428,18 +1428,18 @@ function ImageInputContainer(props: ImageInputContainerProps) {
       )}
 
       <Button
-        variant='outline'
-        size='sm'
+        variant="outline"
+        size="sm"
         onClick={() => setUpdateFormVisible((prev) => !prev)}
       >
         {text}
       </Button>
       {isUpdateFormVisible && (
-        <div className='max-w-lg mt-4'>
+        <div className="max-w-lg mt-4">
           <FormContainer action={action}>
             {props.children}
             <ImageInput />
-            <SubmitButton size='sm' />
+            <SubmitButton size="sm" />
           </FormContainer>
         </div>
       )}
@@ -1479,7 +1479,7 @@ import ImageInputContainer from '@/components/form/ImageInputContainer';
   image={profile.profileImage}
   name={profile.username}
   action={updateProfileImageAction}
-  text='Update Profile Image'
+  text="Update Profile Image"
 />;
 ```
 
@@ -1757,30 +1757,30 @@ import { SubmitButton } from '@/components/form/Buttons';
 function CreateProperty() {
   return (
     <section>
-      <h1 className='text-2xl font-semibold mb-8 capitalize'>
+      <h1 className="text-2xl font-semibold mb-8 capitalize">
         create property
       </h1>
-      <div className='border p-8 rounded-md'>
-        <h3 className='text-lg mb-4 font-medium'>General Info</h3>
+      <div className="border p-8 rounded-md">
+        <h3 className="text-lg mb-4 font-medium">General Info</h3>
         <FormContainer action={createPropertyAction}>
-          <div className='grid md:grid-cols-2 gap-8 mb-4'>
+          <div className="grid md:grid-cols-2 gap-8 mb-4">
             <FormInput
-              name='name'
-              type='text'
-              label='Name (20 limit)'
-              defaultValue='Cabin in Latvia'
+              name="name"
+              type="text"
+              label="Name (20 limit)"
+              defaultValue="Cabin in Latvia"
             />
             <FormInput
-              name='tagline'
-              type='text '
-              label='Tagline (30 limit)'
-              defaultValue='Dream Getaway Awaits You Here!'
+              name="tagline"
+              type="text "
+              label="Tagline (30 limit)"
+              defaultValue="Dream Getaway Awaits You Here!"
             />
             {/* price */}
             {/* categories */}
           </div>
           {/* text area / description */}
-          <SubmitButton text='create rental' className='mt-12' />
+          <SubmitButton text="create rental" className="mt-12" />
         </FormContainer>
       </div>
     </section>
@@ -1806,13 +1806,13 @@ type FormInputNumberProps = {
 
 function PriceInput({ defaultValue }: FormInputNumberProps) {
   return (
-    <div className='mb-2'>
-      <Label htmlFor='price' className='capitalize'>
+    <div className="mb-2">
+      <Label htmlFor="price" className="capitalize">
         Price ($)
       </Label>
       <Input
         id={name}
-        type='number'
+        type="number"
         name={name}
         min={0}
         defaultValue={defaultValue || 100}
@@ -1922,8 +1922,8 @@ import {
 const name = 'category';
 function CategoriesInput({ defaultValue }: { defaultValue?: string }) {
   return (
-    <div className='mb-2'>
-      <Label htmlFor={name} className='capitalize'>
+    <div className="mb-2">
+      <Label htmlFor={name} className="capitalize">
         Categories
       </Label>
       <Select
@@ -1938,7 +1938,7 @@ function CategoriesInput({ defaultValue }: { defaultValue?: string }) {
           {categories.map((item) => {
             return (
               <SelectItem key={item.label} value={item.label}>
-                <span className='flex items-center gap-2'>
+                <span className="flex items-center gap-2">
                   <item.icon /> {item.label}
                 </span>
               </SelectItem>
@@ -1973,8 +1973,8 @@ type TextAreaInputProps = {
 
 function TextAreaInput({ name, labelText, defaultValue }: TextAreaInputProps) {
   return (
-    <div className='mb-2'>
-      <Label htmlFor={name} className='capitalize'>
+    <div className="mb-2">
+      <Label htmlFor={name} className="capitalize">
         {labelText || name}
       </Label>
       <Textarea
@@ -1983,7 +1983,7 @@ function TextAreaInput({ name, labelText, defaultValue }: TextAreaInputProps) {
         defaultValue={defaultValue || tempDefaultDescription}
         rows={5}
         required
-        className='leading-loose'
+        className="leading-loose"
       />
     </div>
   );
@@ -1996,7 +1996,7 @@ export default TextAreaInput;
 
 ```tsx
 /* text area / description */
-<TextAreaInput name='description' labelText='Description (10 - 1000 Words)' />
+<TextAreaInput name="description" labelText="Description (10 - 1000 Words)" />
 ```
 
 ### Countries Input
@@ -2037,8 +2037,8 @@ import {
 const name = 'country';
 function CountriesInput({ defaultValue }: { defaultValue?: string }) {
   return (
-    <div className='mb-2'>
-      <Label htmlFor={name} className='capitalize'>
+    <div className="mb-2">
+      <Label htmlFor={name} className="capitalize">
         country
       </Label>
       <Select
@@ -2053,7 +2053,7 @@ function CountriesInput({ defaultValue }: { defaultValue?: string }) {
           {formattedCountries.map((item) => {
             return (
               <SelectItem key={item.code} value={item.code}>
-                <span className='flex items-center gap-2'>
+                <span className="flex items-center gap-2">
                   {item.flag} {item.name}
                 </span>
               </SelectItem>
@@ -2068,7 +2068,7 @@ export default CountriesInput;
 ```
 
 ```tsx
-<div className='grid sm:grid-cols-2 gap-8 mt-4'>
+<div className="grid sm:grid-cols-2 gap-8 mt-4">
   <CountriesInput />
   <ImageInput />
 </div>
@@ -2106,33 +2106,33 @@ function CounterInput({
     });
   };
   return (
-    <Card className='mb-4'>
-      <input type='hidden' name={detail} value={count} />
-      <CardHeader className='flex flex-col gapy-5'>
-        <div className='flex items-center justify-between flex-wrap'>
-          <div className='flex flex-col'>
-            <h2 className='font-medium capitalize'>{detail}</h2>
-            <p className='text-muted-foreground text-sm'>
+    <Card className="mb-4">
+      <input type="hidden" name={detail} value={count} />
+      <CardHeader className="flex flex-col gapy-5">
+        <div className="flex items-center justify-between flex-wrap">
+          <div className="flex flex-col">
+            <h2 className="font-medium capitalize">{detail}</h2>
+            <p className="text-muted-foreground text-sm">
               Specify the number of {detail}
             </p>
           </div>
-          <div className='flex items-center gap-4'>
+          <div className="flex items-center gap-4">
             <Button
-              variant='outline'
-              size='icon'
-              type='button'
+              variant="outline"
+              size="icon"
+              type="button"
               onClick={decreaseCount}
             >
-              <LuMinus className='w-5 h-5 text-primary' />
+              <LuMinus className="w-5 h-5 text-primary" />
             </Button>
-            <span className='text-xl font-bold w-5 text-center'>{count}</span>
+            <span className="text-xl font-bold w-5 text-center">{count}</span>
             <Button
-              variant='outline'
-              size='icon'
-              type='button'
+              variant="outline"
+              size="icon"
+              type="button"
               onClick={increaseCount}
             >
-              <LuPlus className='w-5 h-5 text-primary' />
+              <LuPlus className="w-5 h-5 text-primary" />
             </Button>
           </div>
         </div>
@@ -2147,11 +2147,11 @@ export default CounterInput;
 ```tsx
 return (
   <>
-    <h3 className='text-lg mt-8 mb-4 font-medium'>Accommodation Details</h3>
-    <CounterInput detail='guests' />
-    <CounterInput detail='bedrooms' />
-    <CounterInput detail='beds' />
-    <CounterInput detail='baths' />
+    <h3 className="text-lg mt-8 mb-4 font-medium">Accommodation Details</h3>
+    <CounterInput detail="guests" />
+    <CounterInput detail="bedrooms" />
+    <CounterInput detail="beds" />
+    <CounterInput detail="baths" />
   </>
 );
 ```
@@ -2280,13 +2280,13 @@ function AmenitiesInput({ defaultValue }: { defaultValue?: Amenity[] }) {
   return (
     <section>
       <input
-        type='hidden'
-        name='amenities'
+        type="hidden"
+        name="amenities"
         value={JSON.stringify(selectedAmenities)}
       />
-      <div className='grid grid-cols-2 gap-4'>
+      <div className="grid grid-cols-2 gap-4">
         {selectedAmenities.map((amenity) => (
-          <div key={amenity.name} className='flex items-center space-x-2'>
+          <div key={amenity.name} className="flex items-center space-x-2">
             <Checkbox
               id={amenity.name}
               checked={amenity.selected}
@@ -2294,10 +2294,10 @@ function AmenitiesInput({ defaultValue }: { defaultValue?: Amenity[] }) {
             />
             <label
               htmlFor={amenity.name}
-              className='text-sm font-medium leading-none capitalize flex gap-x-2 items-center'
+              className="text-sm font-medium leading-none capitalize flex gap-x-2 items-center"
             >
               {amenity.name}
-              <amenity.icon className='w-4 h-4' />
+              <amenity.icon className="w-4 h-4" />
             </label>
           </div>
         ))}
@@ -2311,7 +2311,7 @@ export default AmenitiesInput;
 ```tsx
 return (
   <>
-    <h3 className='text-lg mt-10 mb-6 font-medium'>Amenities</h3>
+    <h3 className="text-lg mt-10 mb-6 font-medium">Amenities</h3>
     <AmenitiesInput />
   </>
 );
@@ -2462,8 +2462,8 @@ function CategoriesList({
   const searchTerm = search ? `&search=${search}` : '';
   return (
     <section>
-      <ScrollArea className='py-6'>
-        <div className='flex gap-x-4'>
+      <ScrollArea className="py-6">
+        <div className="flex gap-x-4">
           {categories.map((item) => {
             const isActive = item.label === category;
             return (
@@ -2476,14 +2476,14 @@ function CategoriesList({
                     isActive ? 'text-primary' : ''
                   }`}
                 >
-                  <item.icon className='w-8 h-8 ' />
-                  <p className='capitalize text-sm mt-1'>{item.label}</p>
+                  <item.icon className="w-8 h-8 " />
+                  <p className="capitalize text-sm mt-1">{item.label}</p>
                 </article>
               </Link>
             );
           })}
         </div>
-        <ScrollBar orientation='horizontal' />
+        <ScrollBar orientation="horizontal" />
       </ScrollArea>
     </section>
   );
@@ -2507,11 +2507,11 @@ function EmptyList({
   btnText?: string;
 }) {
   return (
-    <div className='mt-4'>
-      <h2 className='text-xl font-bold '>{heading}</h2>
-      <p className='text-lg'>{message}</p>
-      <Button asChild className='mt-4 capitalize' size='lg'>
-        <Link href='/'>{btnText}</Link>
+    <div className="mt-4">
+      <h2 className="text-xl font-bold ">{heading}</h2>
+      <p className="text-lg">{message}</p>
+      <Button asChild className="mt-4 capitalize" size="lg">
+        <Link href="/">{btnText}</Link>
       </Button>
     </div>
   );
@@ -2542,9 +2542,9 @@ async function PropertiesContainer({
   if (properties.length === 0) {
     return (
       <EmptyList
-        heading='No results.'
-        message='Try changing or removing some of your filters.'
-        btnText='Clear Filters'
+        heading="No results."
+        message="Try changing or removing some of your filters."
+        btnText="Clear Filters"
       />
     );
   }
@@ -2572,7 +2572,7 @@ import type { PropertyCardProps } from '@/utils/types';
 
 function PropertiesList({ properties }: { properties: PropertyCardProps[] }) {
   return (
-    <section className='mt-4 gap-8 grid sm:grid-cols-2  lg:grid-cols-3  xl:grid-cols-4'>
+    <section className="mt-4 gap-8 grid sm:grid-cols-2  lg:grid-cols-3  xl:grid-cols-4">
       {properties.map((property) => {
         return <PropertyCard key={property.id} property={property} />;
       })}
@@ -2614,35 +2614,35 @@ function PropertyCard({ property }: { property: PropertyCardProps }) {
   const { country, id: propertyId, tagline } = property;
 
   return (
-    <article className='group relative'>
+    <article className="group relative">
       <Link href={`/properties/${propertyId}`}>
-        <div className='relative h-[300px] mb-2 overflow-hidden rounded-md'>
+        <div className="relative h-[300px] mb-2 overflow-hidden rounded-md">
           <Image
             src={image}
             fill
-            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw'
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
             alt={name}
-            className='rounded-md object-cover transform group-hover:scale-110 transition-transform duration-500'
+            className="rounded-md object-cover transform group-hover:scale-110 transition-transform duration-500"
           />
         </div>
-        <div className='flex justify-between items-center'>
-          <h3 className='text-sm font-semibold mt-1'>
+        <div className="flex justify-between items-center">
+          <h3 className="text-sm font-semibold mt-1">
             {name.substring(0, 30)}
           </h3>
           {/* property rating */}
         </div>
-        <p className='text-sm mt-1 text-muted-foreground '>
+        <p className="text-sm mt-1 text-muted-foreground ">
           {tagline.substring(0, 40)}
         </p>
-        <div className='flex justify-between items-center mt-1'>
-          <p className='text-sm mt-1 '>
-            <span className='font-semibold'>{formatCurrency(price)} </span>
+        <div className="flex justify-between items-center mt-1">
+          <p className="text-sm mt-1 ">
+            <span className="font-semibold">{formatCurrency(price)} </span>
             night
           </p>
           {/* country and flag */}
         </div>
       </Link>
-      <div className='absolute top-5 right-5 z-5'>
+      <div className="absolute top-5 right-5 z-5">
         {/* favorite toggle button */}
       </div>
     </article>
@@ -2672,7 +2672,7 @@ async function PropertyRating({
   const countValue = `(${count}) ${inPage ? countText : ''}`;
   return (
     <span className={className}>
-      <FaStar className='w-3 h-3' />
+      <FaStar className="w-3 h-3" />
       {rating} {countValue}
     </span>
   );
@@ -2692,7 +2692,7 @@ import { FaHeart } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 function FavoriteToggleButton({ propertyId }: { propertyId: string }) {
   return (
-    <Button size='icon' variant='outline' className='p-2 cursor-pointer'>
+    <Button size="icon" variant="outline" className="p-2 cursor-pointer">
       <FaHeart />
     </Button>
   );
@@ -2701,7 +2701,7 @@ export default FavoriteToggleButton;
 ```
 
 ```tsx
-<div className='absolute top-5 right-5 z-5'>
+<div className="absolute top-5 right-5 z-5">
   <FavoriteToggleButton propertyId={propertyId} />
 </div>
 ```
@@ -2718,7 +2718,7 @@ function CountryFlagAndName({ countryCode }: { countryCode: string }) {
       ? `${validCountry!.name.substring(0, 20)}...`
       : validCountry!.name;
   return (
-    <span className='flex justify-between items-center gap-2 text-sm '>
+    <span className="flex justify-between items-center gap-2 text-sm ">
       {validCountry?.flag} {countryName}
     </span>
   );
@@ -2741,7 +2741,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 function LoadingCards() {
   return (
-    <section className='mt-4 gap-8 grid sm:grid-cols-2  lg:grid-cols-3  xl:grid-cols-4'>
+    <section className="mt-4 gap-8 grid sm:grid-cols-2  lg:grid-cols-3  xl:grid-cols-4">
       <SkeletonCard />
       <SkeletonCard />
       <SkeletonCard />
@@ -2754,9 +2754,9 @@ export default LoadingCards;
 export function SkeletonCard() {
   return (
     <div>
-      <Skeleton className='h-[300px] rounded-md' />
-      <Skeleton className='h-4 mt-2 w-3/4' />
-      <Skeleton className='h-4 mt-2 w-1/2' />
+      <Skeleton className="h-[300px] rounded-md" />
+      <Skeleton className="h-4 mt-2 w-3/4" />
+      <Skeleton className="h-4 mt-2 w-1/2" />
     </div>
   );
 }
@@ -2834,9 +2834,9 @@ function NavSearch() {
   }, [searchParams.get('search')]);
   return (
     <Input
-      type='search'
-      placeholder='find a property...'
-      className='max-w-xs dark:bg-muted '
+      type="search"
+      placeholder="find a property..."
+      className="max-w-xs dark:bg-muted "
       onChange={(e) => {
         setSearch(e.target.value);
         handleSearch(e.target.value);
@@ -2888,12 +2888,12 @@ import { FaRegHeart, FaHeart } from 'react-icons/fa';
 
 export const CardSignInButton = () => {
   return (
-    <SignInButton mode='modal'>
+    <SignInButton mode="modal">
       <Button
-        type='button'
-        size='icon'
-        variant='outline'
-        className='p-2 cursor-pointer'
+        type="button"
+        size="icon"
+        variant="outline"
+        className="p-2 cursor-pointer"
         asChild
       >
         <FaRegHeart />
@@ -2914,7 +2914,7 @@ function FavoriteToggleButton({ propertyId }: { propertyId: string }) {
   const { userId } = auth();
   if (!userId) return <CardSignInButton />;
   return (
-    <Button size='icon' variant='outline' className='p-2 cursor-pointer'>
+    <Button size="icon" variant="outline" className="p-2 cursor-pointer">
       <FaHeart />
     </Button>
   );
@@ -2975,13 +2975,13 @@ export const CardSubmitButton = ({ isFavorite }: { isFavorite: boolean }) => {
   const { pending } = useFormStatus();
   return (
     <Button
-      type='submit'
-      size='icon'
-      variant='outline'
-      className=' p-2 cursor-pointer'
+      type="submit"
+      size="icon"
+      variant="outline"
+      className=" p-2 cursor-pointer"
     >
       {pending ? (
-        <ReloadIcon className=' animate-spin' />
+        <ReloadIcon className=" animate-spin" />
       ) : isFavorite ? (
         <FaHeart />
       ) : (
@@ -3146,7 +3146,7 @@ export const fetchPropertyDetails = (id: string) => {
 
 import { Skeleton } from '@/components/ui/skeleton';
 function loading() {
-  return <Skeleton className='h-[300px] md:h-[500px] w-full rounded' />;
+  return <Skeleton className="h-[300px] md:h-[500px] w-full rounded" />;
 }
 
 export default loading;
@@ -3187,7 +3187,7 @@ function BreadCrumbs({ name }: { name: string }) {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href='/'>Home</BreadcrumbLink>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
@@ -3206,9 +3206,9 @@ export default BreadCrumbs;
 return (
   <section>
     <BreadCrumbs name={property.name} />
-    <header className='flex justify-between items-center mt-4'>
-      <h1 className='text-4xl font-bold '>{property.tagline}</h1>
-      <div className='flex items-center gap-x-4'>
+    <header className="flex justify-between items-center mt-4">
+      <h1 className="text-4xl font-bold ">{property.tagline}</h1>
+      <div className="flex items-center gap-x-4">
         {/* share button */}
         <FavoriteToggleButton propertyId={property.id} />
       </div>
@@ -3259,15 +3259,15 @@ function ShareButton({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant='outline' size='icon' className='p-2'>
+        <Button variant="outline" size="icon" className="p-2">
           <LuShare2 />
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        side='top'
-        align='end'
+        side="top"
+        align="end"
         sideOffset={10}
-        className='flex items-center gap-x-2 justify-center w-full'
+        className="flex items-center gap-x-2 justify-center w-full"
       >
         <TwitterShareButton url={shareLink} title={name}>
           <TwitterIcon size={32} round />
@@ -3289,7 +3289,7 @@ export default ShareButton;
 
 ```tsx
 return (
-  <div className='flex items-center gap-x-4'>
+  <div className="flex items-center gap-x-4">
     <ShareButton name={property.name} propertyId={property.id} />
     <FavoriteToggleButton propertyId={property.id} />
   </div>
@@ -3311,13 +3311,13 @@ function ImageContainer({
   name: string;
 }) {
   return (
-    <section className='h-[300px] md:h-[500px] relative mt-8'>
+    <section className="h-[300px] md:h-[500px] relative mt-8">
       <Image
         src={mainImage}
         fill
-        sizes='100vw'
+        sizes="100vw"
         alt={name}
-        className='object-cover  rounded-md'
+        className="object-cover  rounded-md"
         priority
       />
     </section>
@@ -3338,14 +3338,14 @@ export default ImageContainer;
 
 ```tsx
 return (
-  <section className='lg:grid lg:grid-cols-12 gap-x-12 mt-12'>
-    <div className='lg:col-span-8'>
-      <div className='flex gap-x-4 items-center'>
-        <h1 className='text-xl font-bold'>{property.name}</h1>
+  <section className="lg:grid lg:grid-cols-12 gap-x-12 mt-12">
+    <div className="lg:col-span-8">
+      <div className="flex gap-x-4 items-center">
+        <h1 className="text-xl font-bold">{property.name}</h1>
         <PropertyRating inPage propertyId={property.id} />
       </div>
     </div>
-    <div className='lg:col-span-4 flex flex-col items-center'>
+    <div className="lg:col-span-4 flex flex-col items-center">
       {/* calendar */}
     </div>
   </section>
@@ -3372,8 +3372,8 @@ export default function App() {
 
   return (
     <Calendar
-      id='test'
-      mode='range'
+      id="test"
+      mode="range"
       defaultMonth={currentDate}
       selected={range}
       onSelect={setRange}
@@ -3385,7 +3385,7 @@ export default function App() {
 - properties/[id]/page.tsx
 
 ```tsx
-<div className='lg:col-span-4 flex flex-col items-center'>
+<div className="lg:col-span-4 flex flex-col items-center">
   {/* calendar */}
   <BookingCalendar />
 </div>
@@ -3419,7 +3419,7 @@ function PropertyDetails({
   details: { bedrooms, baths, guests, beds },
 }: PropertyDetailsProps) {
   return (
-    <p className='text-md font-light '>
+    <p className="text-md font-light ">
       <span>{formatQuantity(bedrooms, 'bedroom')} &middot; </span>
       <span>{formatQuantity(baths, 'bath')} &middot; </span>
       <span>{formatQuantity(guests, 'guest')} &middot; </span>
@@ -3452,20 +3452,20 @@ type UserInfoProps = {
 
 function UserInfo({ profile: { profileImage, firstName } }: UserInfoProps) {
   return (
-    <article className='grid grid-cols-[auto,1fr] gap-4 mt-4'>
+    <article className="grid grid-cols-[auto,1fr] gap-4 mt-4">
       <Image
         src={profileImage}
         alt={firstName}
         width={50}
         height={50}
-        className='rounded-md w-12 h-12 object-cover'
+        className="rounded-md w-12 h-12 object-cover"
       />
       <div>
         <p>
           Hosted by
-          <span className='font-bold'> {firstName}</span>
+          <span className="font-bold"> {firstName}</span>
         </p>
-        <p className='text-muted-foreground font-light'>
+        <p className="text-muted-foreground font-light">
           Superhost &middot; 2 years hosting
         </p>
       </div>
@@ -3490,7 +3490,7 @@ const profileImage = property.profile.profileImage;
 
 ```tsx
 function Title({ text }: { text: string }) {
-  return <h3 className='text-lg font-bold  mb-2'>{text}</h3>;
+  return <h3 className="text-lg font-bold  mb-2">{text}</h3>;
 }
 export default Title;
 ```
@@ -3517,13 +3517,13 @@ const Description = ({ description }: { description: string }) => {
       : description;
 
   return (
-    <article className='mt-4'>
-      <Title text='Description' />
-      <p className='text-muted-foreground font-light leading-loose'>
+    <article className="mt-4">
+      <Title text="Description" />
+      <p className="text-muted-foreground font-light leading-loose">
         {displayedDescription}
       </p>
       {isLongDescription && (
-        <Button variant='link' className='pl-0' onClick={toggleDescription}>
+        <Button variant="link" className="pl-0" onClick={toggleDescription}>
           {isFullDescriptionShown ? 'Show less' : 'Show more'}
         </Button>
       )}
@@ -3558,17 +3558,17 @@ function Amenities({ amenities }: { amenities: string }) {
     return null;
   }
   return (
-    <div className='mt-4'>
-      <Title text='What this place offers' />
-      <div className='grid md:grid-cols-2 gap-x-4'>
+    <div className="mt-4">
+      <Title text="What this place offers" />
+      <div className="grid md:grid-cols-2 gap-x-4">
         {amenitiesList.map((amenity) => {
           if (!amenity.selected) {
             return null;
           }
           return (
-            <div key={amenity.name} className='flex items-center gap-x-4 mb-2 '>
-              <LuFolderCheck className='h-6 w-6 text-primary' />
-              <span className='font-light text-sm capitalize'>
+            <div key={amenity.name} className="flex items-center gap-x-4 mb-2 ">
+              <LuFolderCheck className="h-6 w-6 text-primary" />
+              <span className="font-light text-sm capitalize">
                 {amenity.name}
               </span>
             </div>
@@ -3624,23 +3624,23 @@ function PropertyMap({ countryCode }: { countryCode: string }) {
   const location = findCountryByCode(countryCode)?.location as [number, number];
 
   return (
-    <div className='mt-4'>
-      <div className='mb-4 '>
-        <Title text='Where you will be staying' />
+    <div className="mt-4">
+      <div className="mb-4 ">
+        <Title text="Where you will be staying" />
         <CountryFlagAndName countryCode={countryCode} />
       </div>
       <MapContainer
         scrollWheelZoom={false}
         zoomControl={false}
-        className='h-[50vh] rounded-lg relative z-0'
+        className="h-[50vh] rounded-lg relative z-0"
         center={location || defaultLocation}
         zoom={7}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <ZoomControl position='bottomright' />
+        <ZoomControl position="bottomright" />
         <Marker
           position={location || defaultLocation}
           icon={markerIcon}
@@ -3659,7 +3659,7 @@ const DynamicMap = dynamic(
   () => import('@/components/properties/PropertyMap'),
   {
     ssr: false,
-    loading: () => <Skeleton className='h-[400px] w-full' />,
+    loading: () => <Skeleton className="h-[400px] w-full" />,
   }
 );
 return <DynamicMap countryCode={property.country} />;
@@ -3770,8 +3770,8 @@ const RatingInput = ({
   }).reverse();
 
   return (
-    <div className='mb-2 max-w-xs'>
-      <Label htmlFor={name} className='capitalize'>
+    <div className="mb-2 max-w-xs">
+      <Label htmlFor={name} className="capitalize">
         {labelText || name}
       </Label>
       <Select defaultValue={numbers[0]} name={name} required>
@@ -3824,21 +3824,21 @@ import { createReviewAction } from '@/utils/actions';
 function SubmitReview({ propertyId }: { propertyId: string }) {
   const [isReviewFormVisible, setIsReviewFormVisible] = useState(false);
   return (
-    <div className='mt-8'>
+    <div className="mt-8">
       <Button onClick={() => setIsReviewFormVisible((prev) => !prev)}>
         Leave a Review
       </Button>
       {isReviewFormVisible && (
-        <Card className='p-8 mt-8'>
+        <Card className="p-8 mt-8">
           <FormContainer action={createReviewAction}>
-            <input type='hidden' name='propertyId' value={propertyId} />
-            <RatingInput name='rating' />
+            <input type="hidden" name="propertyId" value={propertyId} />
+            <RatingInput name="rating" />
             <TextAreaInput
-              name='comment'
-              labelText='your thoughts on this property'
-              defaultValue='Amazing place !!!'
+              name="comment"
+              labelText="your thoughts on this property"
+              defaultValue="Amazing place !!!"
             />
-            <SubmitButton text='Submit' className='mt-4' />
+            <SubmitButton text="Submit" className="mt-4" />
           </FormContainer>
         </Card>
       )}
@@ -3940,9 +3940,9 @@ async function PropertyReviews({ propertyId }: { propertyId: string }) {
   const reviews = await fetchPropertyReviews(propertyId);
   if (reviews.length < 1) return null;
   return (
-    <div className='mt-8'>
-      <Title text='Reviews' />
-      <div className='grid md:grid-cols-2 gap-8 mt-4 '>
+    <div className="mt-8">
+      <Title text="Reviews" />
+      <div className="grid md:grid-cols-2 gap-8 mt-4 ">
         {reviews.map((review) => {
           const { comment, rating } = review;
           const { firstName, profileImage } = review.profile;
@@ -3979,16 +3979,16 @@ type ReviewCardProps = {
 
 function ReviewCard({ reviewInfo, children }: ReviewCardProps) {
   return (
-    <Card className='relative'>
+    <Card className="relative">
       <CardHeader>
-        <div className='flex items-center'>
+        <div className="flex items-center">
           <img
             src={reviewInfo.image}
-            alt='profile'
-            className='w-12 h-12 rounded-full object-cover'
+            alt="profile"
+            className="w-12 h-12 rounded-full object-cover"
           />
-          <div className='ml-4'>
-            <h3 className='text-sm font-bold capitalize mb-1'>
+          <div className="ml-4">
+            <h3 className="text-sm font-bold capitalize mb-1">
               {reviewInfo.name}
             </h3>
             <Rating rating={reviewInfo.rating} />
@@ -3999,7 +3999,7 @@ function ReviewCard({ reviewInfo, children }: ReviewCardProps) {
         <Comment comment={reviewInfo.comment} />
       </CardContent>
       {/* delete button later */}
-      <div className='absolute top-3 right-3'>{children}</div>
+      <div className="absolute top-3 right-3">{children}</div>
     </Card>
   );
 }
@@ -4020,7 +4020,7 @@ function Rating({ rating }: { rating: number }) {
   const stars = Array.from({ length: 5 }, (_, i) => i + 1 <= rating);
 
   return (
-    <div className='flex items-center gap-x-1'>
+    <div className="flex items-center gap-x-1">
       {stars.map((isFilled, i) => {
         const className = `w-3 h-3 ${
           isFilled ? 'text-primary' : 'text-gray-400'
@@ -4056,11 +4056,11 @@ function Comment({ comment }: { comment: string }) {
 
   return (
     <div>
-      <p className='text-sm'>{displayComment}</p>
+      <p className="text-sm">{displayComment}</p>
       {longComment && (
         <Button
-          variant='link'
-          className='pl-0 text-muted-foreground'
+          variant="link"
+          className="pl-0 text-muted-foreground"
           onClick={toggleExpanded}
         >
           {isExpanded ? 'Show Less' : 'Show More'}
@@ -4142,12 +4142,12 @@ export const IconButton = ({ actionType }: { actionType: actionType }) => {
 
   return (
     <Button
-      type='submit'
-      size='icon'
-      variant='link'
-      className='p-2 cursor-pointer'
+      type="submit"
+      size="icon"
+      variant="link"
+      className="p-2 cursor-pointer"
     >
-      {pending ? <ReloadIcon className=' animate-spin' /> : renderIcon()}
+      {pending ? <ReloadIcon className=" animate-spin" /> : renderIcon()}
     </Button>
   );
 };
@@ -4173,8 +4173,8 @@ async function ReviewsPage() {
 
   return (
     <>
-      <Title text='Your Reviews' />
-      <section className='grid md:grid-cols-2 gap-8 mt-4 '>
+      <Title text="Your Reviews" />
+      <section className="grid md:grid-cols-2 gap-8 mt-4 ">
         {reviews.map((review) => {
           const { comment, rating } = review;
           const { name, image } = review.property;
@@ -4199,7 +4199,7 @@ const DeleteReview = ({ reviewId }: { reviewId: string }) => {
   const deleteReview = deleteReviewAction.bind(null, { reviewId });
   return (
     <FormContainer action={deleteReview}>
-      <IconButton actionType='delete' />
+      <IconButton actionType="delete" />
     </FormContainer>
   );
 };
@@ -4216,7 +4216,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 function loading() {
   return (
-    <section className='grid md:grid-cols-2 gap-8 mt-4 '>
+    <section className="grid md:grid-cols-2 gap-8 mt-4 ">
       <ReviewLoadingCard />
       <ReviewLoadingCard />
     </section>
@@ -4227,11 +4227,11 @@ const ReviewLoadingCard = () => {
   return (
     <Card>
       <CardHeader>
-        <div className='flex items-center'>
-          <Skeleton className='w-12 h-12 rounded-full' />
-          <div className='ml-4'>
-            <Skeleton className='w-[150px] h-4 mb-2' />
-            <Skeleton className='w-[100px] h-4' />
+        <div className="flex items-center">
+          <Skeleton className="w-12 h-12 rounded-full" />
+          <div className="ml-4">
+            <Skeleton className="w-[150px] h-4 mb-2" />
+            <Skeleton className="w-[100px] h-4" />
           </div>
         </div>
       </CardHeader>
@@ -4350,7 +4350,7 @@ async function PropertyRating({
   const countValue = `(${count}) ${inPage ? countText : ''}`;
   return (
     <span className={className}>
-      <FaStar className='w-3 h-3' />
+      <FaStar className="w-3 h-3" />
       {rating} {countValue}
     </span>
   );
@@ -4524,12 +4524,12 @@ const DynamicBookingWrapper = dynamic(
   () => import('@/components/booking/BookingWrapper'),
   {
     ssr: false,
-    loading: () => <Skeleton className='h-[200px] w-full' />,
+    loading: () => <Skeleton className="h-[200px] w-full" />,
   }
 );
 
 return (
-  <div className='lg:col-span-4 flex flex-col items-center'>
+  <div className="lg:col-span-4 flex flex-col items-center">
     {/* calendar */}
     <DynamicBookingWrapper
       propertyId={property.id}
@@ -4665,11 +4665,11 @@ function BookingCalendar() {
 
   return (
     <Calendar
-      mode='range'
+      mode="range"
       defaultMonth={currentDate}
       selected={range}
       onSelect={setRange}
-      className='mb-4'
+      className="mb-4"
     />
   );
 }
@@ -4690,7 +4690,7 @@ function BookingContainer() {
   if (!range || !range.from || !range.to) return null;
   if (range.to.getTime() === range.from.getTime()) return null;
   return (
-    <div className='w-full'>
+    <div className="w-full">
       <BookingForm />
       <ConfirmBooking />
     </div>
@@ -4748,15 +4748,15 @@ function BookingForm() {
       price,
     });
   return (
-    <Card className='p-8 mb-4'>
-      <CardTitle className='mb-8'>Summary </CardTitle>
+    <Card className="p-8 mb-4">
+      <CardTitle className="mb-8">Summary </CardTitle>
       <FormRow label={`$${price} x ${totalNights} nights`} amount={subTotal} />
-      <FormRow label='Cleaning Fee' amount={cleaning} />
-      <FormRow label='Service Fee' amount={service} />
-      <FormRow label='Tax' amount={tax} />
-      <Separator className='mt-4' />
-      <CardTitle className='mt-8'>
-        <FormRow label='Booking Total' amount={orderTotal} />
+      <FormRow label="Cleaning Fee" amount={cleaning} />
+      <FormRow label="Service Fee" amount={service} />
+      <FormRow label="Tax" amount={tax} />
+      <Separator className="mt-4" />
+      <CardTitle className="mt-8">
+        <FormRow label="Booking Total" amount={orderTotal} />
       </CardTitle>
     </Card>
   );
@@ -4764,7 +4764,7 @@ function BookingForm() {
 
 function FormRow({ label, amount }: { label: string; amount: number }) {
   return (
-    <p className='flex justify-between text-sm mb-2'>
+    <p className="flex justify-between text-sm mb-2">
       <span>{label}</span>
       <span>{formatCurrency(amount)}</span>
     </p>
@@ -4800,8 +4800,8 @@ function ConfirmBooking() {
   const checkOut = range?.to as Date;
   if (!userId)
     return (
-      <SignInButton mode='modal'>
-        <Button type='button' className='w-full'>
+      <SignInButton mode="modal">
+        <Button type="button" className="w-full">
           Sign In to Complete Booking
         </Button>
       </SignInButton>
@@ -4815,7 +4815,7 @@ function ConfirmBooking() {
   return (
     <section>
       <FormContainer action={createBooking}>
-        <SubmitButton text='Reserve' className='w-full' />
+        <SubmitButton text="Reserve" className="w-full" />
       </FormContainer>
     </section>
   );
@@ -4879,11 +4879,11 @@ function BookingCalendar() {
 
   return (
     <Calendar
-      mode='range'
+      mode="range"
       defaultMonth={currentDate}
       selected={range}
       onSelect={setRange}
-      className='mb-4'
+      className="mb-4"
       // add disabled
       disabled={blockedPeriods}
     />
@@ -4918,11 +4918,11 @@ function BookingCalendar() {
 
   return (
     <Calendar
-      mode='range'
+      mode="range"
       defaultMonth={currentDate}
       selected={range}
       onSelect={setRange}
-      className='mb-4'
+      className="mb-4"
       // add disabled
       disabled={blockedPeriods}
     />
@@ -5020,8 +5020,8 @@ async function BookingsPage() {
     return <EmptyList />;
   }
   return (
-    <div className='mt-16'>
-      <h4 className='mb-4 capitalize'>total bookings : {bookings.length}</h4>
+    <div className="mt-16">
+      <h4 className="mb-4 capitalize">total bookings : {bookings.length}</h4>
       <Table>
         <TableCaption>A list of your recent bookings.</TableCaption>
         <TableHeader>
@@ -5046,7 +5046,7 @@ async function BookingsPage() {
                 <TableCell>
                   <Link
                     href={`/properties/${propertyId}`}
-                    className='underline text-muted-foreground tracking-wide'
+                    className="underline text-muted-foreground tracking-wide"
                   >
                     {name}
                   </Link>
@@ -5074,7 +5074,7 @@ function DeleteBooking({ bookingId }: { bookingId: string }) {
   const deleteBooking = deleteBookingAction.bind(null, { bookingId });
   return (
     <FormContainer action={deleteBooking}>
-      <IconButton actionType='delete' />
+      <IconButton actionType="delete" />
     </FormContainer>
   );
 }
@@ -5092,8 +5092,8 @@ import { Skeleton } from '../ui/skeleton';
 function LoadingTable({ rows }: { rows?: number }) {
   const tableRows = Array.from({ length: rows || 5 }, (_, i) => {
     return (
-      <div className='mb-4' key={i}>
-        <Skeleton className='w-full h-8 rounded' />
+      <div className="mb-4" key={i}>
+        <Skeleton className="w-full h-8 rounded" />
       </div>
     );
   });
@@ -5223,15 +5223,15 @@ async function RentalsPage() {
   if (rentals.length === 0) {
     return (
       <EmptyList
-        heading='No rentals to display.'
+        heading="No rentals to display."
         message="Don't hesitate to create a rental."
       />
     );
   }
 
   return (
-    <div className='mt-16'>
-      <h4 className='mb-4 capitalize'>Active Properties : {rentals.length}</h4>
+    <div className="mt-16">
+      <h4 className="mb-4 capitalize">Active Properties : {rentals.length}</h4>
       <Table>
         <TableCaption>A list of all your properties.</TableCaption>
         <TableHeader>
@@ -5252,7 +5252,7 @@ async function RentalsPage() {
                 <TableCell>
                   <Link
                     href={`/properties/${propertyId}`}
-                    className='underline text-muted-foreground tracking-wide'
+                    className="underline text-muted-foreground tracking-wide"
                   >
                     {name}
                   </Link>
@@ -5261,9 +5261,9 @@ async function RentalsPage() {
                 <TableCell>{totalNightsSum || 0}</TableCell>
                 <TableCell>{formatCurrency(orderTotalSum)}</TableCell>
 
-                <TableCell className='flex items-center gap-x-2'>
+                <TableCell className="flex items-center gap-x-2">
                   <Link href={`/rentals/${propertyId}/edit`}>
-                    <IconButton actionType='edit'></IconButton>
+                    <IconButton actionType="edit"></IconButton>
                   </Link>
                   <DeleteRental propertyId={propertyId} />
                 </TableCell>
@@ -5280,7 +5280,7 @@ function DeleteRental({ propertyId }: { propertyId: string }) {
   const deleteRental = deleteRentalAction.bind(null, { propertyId });
   return (
     <FormContainer action={deleteRental}>
-      <IconButton actionType='delete' />
+      <IconButton actionType="delete" />
     </FormContainer>
   );
 }
@@ -5345,30 +5345,30 @@ async function EditRentalPage({ params }: { params: { id: string } }) {
 
   return (
     <section>
-      <h1 className='text-2xl font-semibold mb-8 capitalize'>Edit Property</h1>
-      <div className='border p-8 rounded-md '>
+      <h1 className="text-2xl font-semibold mb-8 capitalize">Edit Property</h1>
+      <div className="border p-8 rounded-md ">
         <ImageInputContainer
           name={property.name}
-          text='Update Image'
+          text="Update Image"
           action={updatePropertyImageAction}
           image={property.image}
         >
-          <input type='hidden' name='id' value={property.id} />
+          <input type="hidden" name="id" value={property.id} />
         </ImageInputContainer>
 
         <FormContainer action={updatePropertyAction}>
-          <input type='hidden' name='id' value={property.id} />
-          <div className='grid md:grid-cols-2 gap-8 mb-4 mt-8'>
+          <input type="hidden" name="id" value={property.id} />
+          <div className="grid md:grid-cols-2 gap-8 mb-4 mt-8">
             <FormInput
-              name='name'
-              type='text'
-              label='Name (20 limit)'
+              name="name"
+              type="text"
+              label="Name (20 limit)"
               defaultValue={property.name}
             />
             <FormInput
-              name='tagline'
-              type='text '
-              label='Tagline (30 limit)'
+              name="tagline"
+              type="text "
+              label="Tagline (30 limit)"
               defaultValue={property.tagline}
             />
             <PriceInput defaultValue={property.price} />
@@ -5377,21 +5377,21 @@ async function EditRentalPage({ params }: { params: { id: string } }) {
           </div>
 
           <TextAreaInput
-            name='description'
-            labelText='Description (10 - 100 Words)'
+            name="description"
+            labelText="Description (10 - 100 Words)"
             defaultValue={property.description}
           />
 
-          <h3 className='text-lg mt-8 mb-4 font-medium'>
+          <h3 className="text-lg mt-8 mb-4 font-medium">
             Accommodation Details
           </h3>
-          <CounterInput detail='guests' defaultValue={property.guests} />
-          <CounterInput detail='bedrooms' defaultValue={property.bedrooms} />
-          <CounterInput detail='beds' defaultValue={property.beds} />
-          <CounterInput detail='baths' defaultValue={property.baths} />
-          <h3 className='text-lg mt-10 mb-6 font-medium'>Amenities</h3>
+          <CounterInput detail="guests" defaultValue={property.guests} />
+          <CounterInput detail="bedrooms" defaultValue={property.bedrooms} />
+          <CounterInput detail="beds" defaultValue={property.beds} />
+          <CounterInput detail="baths" defaultValue={property.baths} />
+          <h3 className="text-lg mt-10 mb-6 font-medium">Amenities</h3>
           <AmenitiesInput defaultValue={defaultAmenities} />
-          <SubmitButton text='edit property' className='mt-12' />
+          <SubmitButton text="edit property" className="mt-12" />
         </FormContainer>
       </div>
     </section>
@@ -5431,14 +5431,14 @@ function AmenitiesInput({ defaultValue }: { defaultValue?: Amenity[] }) {
   return (
     <section>
       <input
-        type='hidden'
-        name='amenities'
+        type="hidden"
+        name="amenities"
         value={JSON.stringify(selectedAmenities)}
       />
-      <div className='grid grid-cols-2 gap-4'>
+      <div className="grid grid-cols-2 gap-4">
         {selectedAmenities.map((amenity) => {
           return (
-            <div key={amenity.name} className='flex items-center space-x-2'>
+            <div key={amenity.name} className="flex items-center space-x-2">
               <Checkbox
                 id={amenity.name}
                 checked={amenity.selected}
@@ -5446,9 +5446,9 @@ function AmenitiesInput({ defaultValue }: { defaultValue?: Amenity[] }) {
               />
               <label
                 htmlFor={amenity.name}
-                className='text-sm font-medium leading-none capitalize flex gap-x-2 items-center'
+                className="text-sm font-medium leading-none capitalize flex gap-x-2 items-center"
               >
-                {amenity.name} <amenity.icon className='w-4 h-4' />
+                {amenity.name} <amenity.icon className="w-4 h-4" />
               </label>
             </div>
           );
@@ -5614,8 +5614,8 @@ async function ReservationsPage() {
   }
 
   return (
-    <div className='mt-16'>
-      <h4 className='mb-4 capitalize'>
+    <div className="mt-16">
+      <h4 className="mb-4 capitalize">
         total reservations : {reservations.length}
       </h4>
       <Table>
@@ -5641,7 +5641,7 @@ async function ReservationsPage() {
                 <TableCell>
                   <Link
                     href={`/properties/${propertyId}`}
-                    className='underline text-muted-foreground tracking-wide'
+                    className="underline text-muted-foreground tracking-wide"
                   >
                     {name}
                   </Link>
@@ -5719,7 +5719,7 @@ return (
       if (link.label === 'admin' && !isAdminUser) return null;
       return (
         <DropdownMenuItem key={link.href}>
-          <Link href={link.href} className='capitalize w-full'>
+          <Link href={link.href} className="capitalize w-full">
             {link.label}
           </Link>
         </DropdownMenuItem>
@@ -5737,7 +5737,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export function StatsLoadingContainer() {
   return (
-    <div className='mt-8 grid md:grid-cols-2 gap-4 lg:grid-cols-3'>
+    <div className="mt-8 grid md:grid-cols-2 gap-4 lg:grid-cols-3">
       <LoadingCard />
       <LoadingCard />
       <LoadingCard />
@@ -5749,14 +5749,14 @@ function LoadingCard() {
   return (
     <Card>
       <CardHeader>
-        <Skeleton className='w-full h-20 rounded' />
+        <Skeleton className="w-full h-20 rounded" />
       </CardHeader>
     </Card>
   );
 }
 
 export function ChartsLoadingContainer() {
-  return <Skeleton className='mt-16 w-full h-[300px] rounded' />;
+  return <Skeleton className="mt-16 w-full h-[300px] rounded" />;
 }
 ```
 
@@ -5818,10 +5818,10 @@ async function StatsContainer() {
   const data = await fetchStats();
 
   return (
-    <div className='mt-8 grid md:grid-cols-2 gap-4 lg:grid-cols-3'>
-      <StatsCard title='users' value={data?.usersCount || 0} />
-      <StatsCard title='properties' value={data?.propertiesCount || 0} />
-      <StatsCard title='bookings' value={data?.bookingsCount || 0} />
+    <div className="mt-8 grid md:grid-cols-2 gap-4 lg:grid-cols-3">
+      <StatsCard title="users" value={data?.usersCount || 0} />
+      <StatsCard title="properties" value={data?.propertiesCount || 0} />
+      <StatsCard title="bookings" value={data?.bookingsCount || 0} />
     </div>
   );
 }
@@ -5840,10 +5840,10 @@ type StatsCardsProps = {
 
 function StatsCards({ title, value }: StatsCardsProps) {
   return (
-    <Card className='bg-muted'>
-      <CardHeader className='flex flex-row justify-between items-center'>
-        <h3 className='capitalize text-3xl font-bold'>{title}</h3>
-        <span className='text-primary text-5xl font-extrabold'>{value}</span>
+    <Card className="bg-muted">
+      <CardHeader className="flex flex-row justify-between items-center">
+        <h3 className="capitalize text-3xl font-bold">{title}</h3>
+        <span className="text-primary text-5xl font-extrabold">{value}</span>
       </CardHeader>
     </Card>
   );
@@ -5949,15 +5949,15 @@ type ChartPropsType = {
 
 function Chart({ data }: ChartPropsType) {
   return (
-    <section className='mt-24'>
-      <h1 className='text-4xl font-semibold text-center'>Monthly Bookings</h1>
-      <ResponsiveContainer width='100%' height={300}>
+    <section className="mt-24">
+      <h1 className="text-4xl font-semibold text-center">Monthly Bookings</h1>
+      <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data} margin={{ top: 50 }}>
-          <CartesianGrid strokeDasharray='3 3' />
-          <XAxis dataKey='date' />
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
           <YAxis allowDecimals={false} />
           <Tooltip />
-          <Bar dataKey='count' fill='#F97215' barSize={75} />
+          <Bar dataKey="count" fill="#F97215" barSize={75} />
         </BarChart>
       </ResponsiveContainer>
     </section>
@@ -6033,7 +6033,7 @@ export default function CheckoutPage() {
   const options = { fetchClientSecret };
 
   return (
-    <div id='checkout'>
+    <div id="checkout">
       <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>
@@ -6246,10 +6246,10 @@ async function Stats() {
   const stats = await fetchReservationStats();
 
   return (
-    <div className='mt-8 grid md:grid-cols-2 gap-4 lg:grid-cols-3'>
-      <StatsCards title='properties' value={stats.properties} />
-      <StatsCards title='nights' value={stats.nights} />
-      <StatsCards title='total' value={formatCurrency(stats.amount)} />
+    <div className="mt-8 grid md:grid-cols-2 gap-4 lg:grid-cols-3">
+      <StatsCards title="properties" value={stats.properties} />
+      <StatsCards title="nights" value={stats.nights} />
+      <StatsCards title="total" value={formatCurrency(stats.amount)} />
     </div>
   );
 }
