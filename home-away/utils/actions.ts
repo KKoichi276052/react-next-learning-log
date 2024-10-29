@@ -1,10 +1,11 @@
 'use server';
 
-import { profileSchema } from './schemas';
+import { profileSchema, validateWithZodSchema, imageSchema } from './schemas';
 import db from './db';
 import { auth, clerkClient, currentUser } from '@clerk/nextjs/server';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { uploadImage } from './supabase';
 
 export const createProfileAction = async (
   prevState: any,
@@ -15,7 +16,7 @@ export const createProfileAction = async (
     if (!user) throw new Error('Please login to create a profile');
 
     const rawData = Object.fromEntries(formData);
-    const validatedFields = profileSchema.parse(rawData);
+    const validatedFields = validateWithZodSchema(profileSchema, rawData);
 
     await db.profile.create({
       data: {
@@ -36,21 +37,6 @@ export const createProfileAction = async (
     };
   }
   redirect('/');
-};
-
-export const fetchProfileImage = async () => {
-  const user = await currentUser();
-  if (!user) return null;
-
-  const profile = await db.profile.findUnique({
-    where: {
-      clerkId: user.id,
-    },
-    select: {
-      profileImage: true,
-    },
-  });
-  return profile?.profileImage;
 };
 
 export const fetchProfile = async () => {
@@ -74,6 +60,21 @@ const getAuthUser = async () => {
   return user;
 };
 
+export const fetchProfileImage = async () => {
+  const user = await currentUser();
+  if (!user) return null;
+
+  const profile = await db.profile.findUnique({
+    where: {
+      clerkId: user.id,
+    },
+    select: {
+      profileImage: true,
+    },
+  });
+  return profile?.profileImage;
+};
+
 export const updateProfileAction = async (
   prevState: any,
   formData: FormData
@@ -81,12 +82,7 @@ export const updateProfileAction = async (
   const user = await getAuthUser();
   try {
     const rawData = Object.fromEntries(formData);
-
-    const validatedFields = profileSchema.safeParse(rawData);
-    if (!validatedFields.success) {
-      const errors = validatedFields.error.errors.map((error) => error.message);
-      throw new Error(errors.join(','));
-    }
+    const validatedFields = validateWithZodSchema(profileSchema, rawData);
 
     await db.profile.update({
       where: {
@@ -106,4 +102,29 @@ const renderError = (error: unknown): { message: string } => {
   return {
     message: error instanceof Error ? error.message : 'An error occurred',
   };
+};
+
+export const updateProfileImageAction = async (
+  prevState: any,
+  formData: FormData
+) => {
+  const user = await getAuthUser();
+  try {
+    const image = formData.get('image') as File;
+    const validatedFields = validateWithZodSchema(imageSchema, { image });
+    const fullPath = await uploadImage(validatedFields.image);
+
+    await db.profile.update({
+      where: {
+        clerkId: user.id,
+      },
+      data: {
+        profileImage: fullPath,
+      },
+    });
+    revalidatePath('/profile');
+    return { message: 'Profile image updated successfully' };
+  } catch (error) {
+    return renderError(error);
+  }
 };
