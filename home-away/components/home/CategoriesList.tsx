@@ -10,6 +10,7 @@ const CategoriesList = ({
   search?: string;
 }) => {
   const searchTerm = search ? `&search=${search}` : '';
+
   return (
     <section>
       <ScrollArea className="py-6">
