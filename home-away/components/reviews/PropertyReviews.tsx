@@ -1,7 +1,6 @@
 import { fetchPropertyReviews } from '@/utils/actions';
 import Title from '@/components/properties/Title';
 import ReviewCard from './ReviewCard';
-import EmptyList from '../home/EmptyList';
 
 const PropertyReviews = async ({ propertyId }: { propertyId: string }) => {
   const reviews = await fetchPropertyReviews(propertyId);
