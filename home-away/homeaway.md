@@ -4442,7 +4442,7 @@ export type Booking = {
   - BookingCalendar.tsx
   - BookingContainer.tsx
   - BookingForm.tsx
-  - BookingWrapper.tsx
+  - BookingWrapper.tsxm
   - ConfirmBooking.tsx
 
 ### Zustand
