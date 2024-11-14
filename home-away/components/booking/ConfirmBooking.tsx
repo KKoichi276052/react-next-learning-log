@@ -11,6 +11,7 @@ const ConfirmBooking = () => {
   const { propertyId, range } = useProperty((state) => state);
   const checkIn = range?.from as Date;
   const checkOut = range?.to as Date;
+
   if (!userId)
     return (
       <SignInButton mode="modal">
@@ -25,6 +26,7 @@ const ConfirmBooking = () => {
     checkIn,
     checkOut,
   });
+
   return (
     <section>
       <FormContainer action={createBooking}>

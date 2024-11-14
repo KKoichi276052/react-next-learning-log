@@ -6,7 +6,6 @@ import BookingForm from './BookingForm';
 
 const BookingContainer = () => {
   const { range } = useProperty((state) => state);
-  console.log(range);
 
   if (!range || !range.from || !range.to) return null;
   if (range.to.getTime() === range.from.getTime()) return null;
@@ -17,8 +16,6 @@ const BookingContainer = () => {
       <ConfirmBooking />
     </div>
   );
-
-  return <div>BookingContainer</div>;
 };
 
 export default BookingContainer;
