@@ -6,6 +6,7 @@ import { renderError } from '../helpers';
 import { uploadImage } from '../supabase';
 import { redirect } from 'next/navigation';
 import db from '../db';
+import { revalidatePath } from 'next/cache';
 
 export const createPropertyAction = async (
   prevState: never,
@@ -75,4 +76,31 @@ export const fetchPropertyDetails = (id: string) => {
       },
     },
   });
+};
+
+export const updatePropertyAction = async (
+  prevState: any,
+  formData: FormData
+): Promise<{ message: string }> => {
+  const user = await getAuthUser();
+  const propertyId = formData.get('id') as string;
+
+  try {
+    const rawData = Object.fromEntries(formData);
+    const validatedFields = validateWithZodSchema(propertySchema, rawData);
+    await db.property.update({
+      where: {
+        id: propertyId,
+        profileId: user.id,
+      },
+      data: {
+        ...validatedFields,
+      },
+    });
+
+    revalidatePath(`/rentals/${propertyId}/edit`);
+    return { message: 'Property updated successfully' };
+  } catch (error) {
+    return renderError(error);
+  }
 };
