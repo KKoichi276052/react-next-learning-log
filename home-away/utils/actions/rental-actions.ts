@@ -77,11 +77,3 @@ export const fetchRentalDetails = async (propertyId: string) => {
     },
   });
 };
-
-export const updatePropertyAction = async () => {
-  return { message: 'update property action' };
-};
-
-export const updatePropertyImageAction = async () => {
-  return { message: 'update property image' };
-};

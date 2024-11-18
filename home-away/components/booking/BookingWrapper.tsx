@@ -19,7 +19,7 @@ const BookingWrapper = ({
 }: BookingWrapperProps) => {
   useEffect(() => {
     useProperty.setState({ propertyId, price, bookings });
-  }, []);
+  }, [propertyId, price, bookings]);
 
   return (
     <>

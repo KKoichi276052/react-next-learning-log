@@ -20,6 +20,7 @@ const EditRentalPage = async ({ params }: { params: { id: string } }) => {
   const property = await fetchRentalDetails(params.id);
 
   if (!property) redirect('/rentals');
+
   const defaultAmenities: Amenity[] = JSON.parse(property.amenities);
 
   return (

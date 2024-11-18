@@ -1,6 +1,6 @@
 import NavSearch from './NavSearch';
 import LinksDropdown from './LinksDropdown';
-import DarkMode from './DarkMode';
+// import DarkMode from './DarkMode';
 import Logo from './Logo';
 import { ModeToggle } from './ModeToggle';
 
