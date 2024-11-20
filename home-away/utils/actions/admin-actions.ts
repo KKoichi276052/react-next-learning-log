@@ -34,6 +34,7 @@ export const fetchChartsData = async () => {
       createdAt: {
         gte: sixMonthsAgo,
       },
+      paymentStatus: true,
     },
     orderBy: {
       createdAt: 'asc',
