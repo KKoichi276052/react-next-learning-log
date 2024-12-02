@@ -1,3 +1,26 @@
+/**
+ * HeaderAuth component handles the authentication-related UI elements in the header.
+ *
+ * @component
+ * @description
+ * This component displays different content based on the user's authentication state:
+ * - Loading state: Shows a fallback avatar
+ * - Authenticated state: Shows user's avatar with a popover containing sign out option
+ * - Unauthenticated state: Shows sign in and sign up buttons
+ *
+ * @returns {React.ReactNode} Authentication-related UI elements based on session state
+ *
+ * @example
+ * ```tsx
+ * <HeaderAuth />
+ * ```
+ *
+ * @requires next-auth/react
+ * @requires @nextui-org/navbar
+ * @requires @nextui-org/button
+ * @requires @nextui-org/avatar
+ * @requires @nextui-org/popover
+ */
 'use client';
 
 import { NavbarItem } from '@nextui-org/navbar';
