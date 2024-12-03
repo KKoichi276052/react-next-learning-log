@@ -5,12 +5,15 @@ import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import { Textarea } from '@nextui-org/input';
 import * as actions from '@/actions';
-import { useActionState, startTransition } from 'react';
+import { useActionState, startTransition, useEffect } from 'react';
+import FormButton from './common/FormButton';
+import { useToast } from '@/hooks/use-toast';
 
 const TopicCreateForm = () => {
-  const [formState, action] = useActionState(actions.createTopic, {
+  const [formState, action, isPending] = useActionState(actions.createTopic, {
     errors: {},
   });
+  const { toast } = useToast();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -19,6 +22,12 @@ const TopicCreateForm = () => {
       action(formData);
     });
   }
+
+  useEffect(() => {
+    if (Object.keys(formState.errors).length === 0) {
+      toast({ description: 'Topic Successfully created' });
+    }
+  }, [formState]);
 
   return (
     <div>
@@ -51,9 +60,7 @@ const TopicCreateForm = () => {
                   {formState.errors._form?.join(', ')}
                 </p>
               )}
-              <Button type="submit" color="primary">
-                Create
-              </Button>
+              <FormButton isLoading={isPending}>Create</FormButton>
             </div>
           </form>
         </PopoverContent>

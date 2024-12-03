@@ -54,6 +54,7 @@ interface CreateTopicFormState {
     description?: string[];
     _form?: string[];
   };
+  message?: string;
 }
 
 export const createTopic = async (
