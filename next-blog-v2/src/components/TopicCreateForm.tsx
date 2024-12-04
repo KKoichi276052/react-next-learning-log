@@ -13,21 +13,15 @@ const TopicCreateForm = () => {
   const [formState, action, isPending] = useActionState(actions.createTopic, {
     errors: {},
   });
-  const { toast } = useToast();
+  // const { toast } = useToast();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    startTransition(() => {
+    startTransition(async () => {
       action(formData);
     });
   }
-
-  useEffect(() => {
-    if (Object.keys(formState.errors).length === 0) {
-      toast({ description: 'Topic Successfully created' });
-    }
-  }, [formState]);
 
   return (
     <div>
