@@ -1,19 +1,17 @@
 'use client';
 
+import { startTransition, useActionState } from 'react';
+import * as actions from '@/actions';
 import { Popover, PopoverTrigger, PopoverContent } from '@nextui-org/popover';
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import { Textarea } from '@nextui-org/input';
-import * as actions from '@/actions';
-import { useActionState, startTransition, useEffect } from 'react';
-import FormButton from './common/FormButton';
-import { useToast } from '@/hooks/use-toast';
+import FormButton from '@/components/common/FormButton';
 
-const TopicCreateForm = () => {
-  const [formState, action, isPending] = useActionState(actions.createTopic, {
+const PostCreateForm = () => {
+  const [formState, action, isPending] = useActionState(actions.createPost, {
     errors: {},
   });
-  // const { toast } = useToast();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -27,27 +25,27 @@ const TopicCreateForm = () => {
     <div>
       <Popover placement="left-start">
         <PopoverTrigger>
-          <Button color="primary">Create Topic</Button>
+          <Button color="primary">Create Post</Button>
         </PopoverTrigger>
         <PopoverContent>
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-4 p-4 w-80">
-              <h3 className="text-lg">Create a Topic</h3>
+              <h3 className="text-lg">Create a Post</h3>
               <Input
-                name="name"
+                name="title"
                 type="text"
                 label="Title"
                 placeholder="Enter title of your topic"
                 labelPlacement="outside"
-                isInvalid={!!formState.errors.name}
-                errorMessage={formState.errors.name?.join(', ')}
+                isInvalid={!!formState.errors.title}
+                errorMessage={formState.errors.title?.join(', ')}
               />
               <Textarea
-                name="description"
-                label="Description"
+                name="content"
+                label="Content"
                 labelPlacement="outside"
-                isInvalid={!!formState.errors.description}
-                errorMessage={formState.errors.description?.join(', ')}
+                isInvalid={!!formState.errors.content}
+                errorMessage={formState.errors.content?.join(', ')}
               />
               {formState.errors._form && (
                 <p className="text-danger">
@@ -63,4 +61,4 @@ const TopicCreateForm = () => {
   );
 };
 
-export default TopicCreateForm;
+export default PostCreateForm;

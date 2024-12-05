@@ -1,5 +1,5 @@
 import TopicList from '@/components/common/TopicList';
-import TopicCreateForm from '@/components/TopicCreateForm';
+import TopicCreateForm from '@/components/topics/TopicCreateForm';
 import { Divider } from '@nextui-org/react';
 
 export default async function Home() {
