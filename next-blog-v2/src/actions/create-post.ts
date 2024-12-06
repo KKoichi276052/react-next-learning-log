@@ -9,7 +9,7 @@ import paths from '@/app/paths';
 import { revalidatePath } from 'next/cache';
 
 const createPostSchema = z.object({
-  name: z.string().min(3),
+  title: z.string().min(3),
   content: z.string().min(10),
 });
 
@@ -22,11 +22,16 @@ interface CreatePostFormState {
 }
 
 export const createPost = async (
+  slug: string,
   formState: CreatePostFormState,
   formData: FormData
 ): Promise<CreatePostFormState> => {
+  console.log(formData);
   const rawData = Object.fromEntries(formData);
+  console.log(rawData);
   const validatedData = createPostSchema.safeParse(rawData);
+
+  console.log(validatedData);
 
   if (!validatedData.success) {
     return {
@@ -35,6 +40,8 @@ export const createPost = async (
   }
 
   const session = await auth();
+  console.log(session);
+
   if (!session || !session.user) {
     return {
       errors: {
@@ -43,12 +50,27 @@ export const createPost = async (
     };
   }
 
+  const topic = await db.topic.findFirst({
+    where: { slug },
+  });
+
+  if (!topic)
+    return {
+      errors: {
+        _form: ['Topic not found'],
+      },
+    };
+
+  console.log(topic);
+
   let post: Post;
   try {
     post = await db.post.create({
       data: {
-        title: validatedData.data.name,
+        title: validatedData.data.title,
         content: validatedData.data.content,
+        userId: session.user.id,
+        topicId: topic.id,
       },
     });
   } catch (error: unknown) {
@@ -67,6 +89,6 @@ export const createPost = async (
     };
   }
 
-  revalidatePath('/');
-  redirect(paths.postShow(post));
+  revalidatePath(paths.topicShow(slug));
+  redirect(paths.postShow(slug, post.id));
 };

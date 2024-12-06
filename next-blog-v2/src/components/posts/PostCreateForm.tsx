@@ -8,10 +8,17 @@ import { Input } from '@nextui-org/input';
 import { Textarea } from '@nextui-org/input';
 import FormButton from '@/components/common/FormButton';
 
-const PostCreateForm = () => {
-  const [formState, action, isPending] = useActionState(actions.createPost, {
-    errors: {},
-  });
+interface PostCreateFormProps {
+  slug: string;
+}
+
+const PostCreateForm = ({ slug }: PostCreateFormProps) => {
+  const [formState, action, isPending] = useActionState(
+    actions.createPost.bind(null, slug),
+    {
+      errors: {},
+    }
+  );
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
