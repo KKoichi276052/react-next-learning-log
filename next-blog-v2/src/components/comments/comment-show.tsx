@@ -1,15 +1,23 @@
-'use client';
-import type { CommentWithAuthor } from '@/db/queries/comments';
+import {
+  fetchCommentsByPostId,
+  type CommentWithAuthor,
+} from '@/db/queries/comments';
 import CommentCreateForm from '@/components/comments/comment-create-form';
 import { Avatar } from '@nextui-org/react';
+import Image from 'next/image';
 
 interface CommentShowProps {
   commentId: string;
-  comments: CommentWithAuthor[];
+  // comments: CommentWithAuthor[];
+  postId: string;
 }
 
 // TODO: Get a list of comments
-export default function CommentShow({ commentId, comments }: CommentShowProps) {
+export default async function CommentShow({
+  commentId,
+  postId,
+}: CommentShowProps) {
+  const comments = await fetchCommentsByPostId(postId);
   const comment = comments.find((c) => c.id === commentId);
 
   if (!comment) {
@@ -18,15 +26,19 @@ export default function CommentShow({ commentId, comments }: CommentShowProps) {
 
   const children = comments.filter((c) => c.parentId === commentId);
   const renderedChildren = children.map((child) => {
-    return (
-      <CommentShow key={child.id} commentId={child.id} comments={comments} />
-    );
+    return <CommentShow key={child.id} commentId={child.id} postId={postId} />;
   });
 
   return (
     <div className="p-4 border mt-2 mb-1">
       <div className="flex gap-3">
-        <Avatar src={comment.user.image || ''} alt="user image" />
+        <Image
+          src={comment.user.image || ''}
+          alt="user image"
+          width={40}
+          height={40}
+          className="w-10 h-10 rounded-full"
+        />
         <div className="flex-1 space-y-3">
           <p className="text-sm font-medium text-gray-500">
             {comment.user.name}
