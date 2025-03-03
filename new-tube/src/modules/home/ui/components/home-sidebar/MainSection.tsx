@@ -7,6 +7,8 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { useAuth } from "@clerk/clerk-react";
+import { useClerk } from "@clerk/nextjs";
 import {
 	FlameIcon,
 	HomeIcon,
@@ -44,6 +46,9 @@ const items: MenuItem[] = [
 
 // TODO: Duplication with personal section. consider to make them reusable but personal section is auth required component
 const MainSection = () => {
+	const { isSignedIn } = useAuth();
+	const clerk = useClerk();
+
 	return (
 		<SidebarGroup>
 			<SidebarGroupContent>
@@ -53,8 +58,13 @@ const MainSection = () => {
 							<SidebarMenuButton
 								tooltip={item.title}
 								asChild
-								isActive={window.location.pathname === item.url}
-								onClick={() => {}}
+								isActive={false}
+								onClick={(e) => {
+									if (item.auth && !isSignedIn) {
+										e.preventDefault();
+										return clerk.openSignIn();
+									}
+								}}
 							>
 								<Link href={item.url} className="flex items-center gap-4">
 									<item.icon />

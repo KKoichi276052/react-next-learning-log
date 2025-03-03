@@ -7,6 +7,7 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { useAuth, useClerk } from "@clerk/nextjs";
 import {
 	HistoryIcon,
 	ListVideoIcon,
@@ -42,6 +43,9 @@ const items: MenuItem[] = [
 ];
 
 const PersonalSection = () => {
+	const { isSignedIn } = useAuth();
+	const clerk = useClerk();
+
 	return (
 		<SidebarGroup>
 			<SidebarGroupContent>
@@ -51,8 +55,13 @@ const PersonalSection = () => {
 							<SidebarMenuButton
 								tooltip={item.title}
 								asChild
-								isActive={window.location.pathname === item.url}
-								onClick={() => {}}
+								isActive={false}
+								onClick={(e) => {
+									if (item.auth && !isSignedIn) {
+										e.preventDefault();
+										return clerk.openSignIn();
+									}
+								}}
 							>
 								<Link href={item.url} className="flex items-center gap-4">
 									<item.icon />
