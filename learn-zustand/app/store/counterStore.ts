@@ -28,5 +28,3 @@ export const useCounterStore = create<CounterState>()(
 );
 
 export default useCounterStore;
-
-export type CounterStore = typeof useCounterStore;
