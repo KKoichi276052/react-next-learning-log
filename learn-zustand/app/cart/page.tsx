@@ -6,13 +6,14 @@ import { useEffect } from "react";
 
 export default function Cart() {
 	const cartItems = userCartStore((state) => state.items);
+	const { updateQuantity } = userCartStore();
+	const removeFromCart = userCartStore((state) => state.removeFromCart);
 	const subtotal = cartItems.reduce(
 		(total, item) => total + item.price * item.quantity,
 		0,
 	);
 	const tax = subtotal * 0.1; // Assuming 10% tax
 	const total = subtotal + tax;
-	const removeFromCart = userCartStore((state) => state.removeFromCart);
 
 	useEffect(() => {
 		userCartStore.persist.rehydrate();
@@ -44,11 +45,19 @@ export default function Cart() {
 									</h2>
 									<p className="text-gray-600">${item.price.toFixed(2)}</p>
 									<div className="flex items-center mt-2">
-										<Button variant="outline" size="sm">
+										<Button
+											onClick={() => updateQuantity(item.id, "decrement")}
+											variant="outline"
+											size="sm"
+										>
 											-
 										</Button>
 										<span className="mx-2">{item.quantity}</span>
-										<Button variant="outline" size="sm">
+										<Button
+											onClick={() => updateQuantity(item.id, "increment")}
+											variant="outline"
+											size="sm"
+										>
 											+
 										</Button>
 									</div>

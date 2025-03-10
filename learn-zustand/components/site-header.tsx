@@ -22,7 +22,9 @@ const user = {
 };
 
 export function SiteHeader() {
-	const items = userCartStore((state) => state.items);
+	const items = userCartStore((state) =>
+		state.items.reduce((total, item) => total + item.quantity, 0),
+	);
 	const isLoggedIn = false;
 
 	return (
@@ -38,7 +40,7 @@ export function SiteHeader() {
 						<Link href="/cart" className="relative">
 							<ShoppingCart className="h-6 w-6 text-gray-600" />
 							<span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-								{items.length}
+								{items}
 							</span>
 						</Link>
 						<Link href="/counter">Counter</Link>

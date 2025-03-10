@@ -17,6 +17,9 @@ type CartState = {
 type CartAction = {
 	addToCart: (product: Product) => void;
 	removeFromCart: (id: number) => void;
+	incrementItemQuantity: (id: number) => void;
+	decrementItemQuantity: (id: number) => void;
+	updateQuantity: (id: number, type: "increment" | "decrement") => void;
 };
 
 const userCartStore = create<CartState & CartAction>()(
@@ -29,14 +32,8 @@ const userCartStore = create<CartState & CartAction>()(
 				);
 
 				if (existingItem) {
-					set((state) => ({
-						items: state.items.map((item) =>
-							item.id === product.id
-								? { ...item, quantity: item.quantity + 1 }
-								: item,
-						),
-					}));
-					toast.success(`Added another ${product.title} to cart`);
+					get().incrementItemQuantity(product.id);
+					toast.success(`added another ${product.title} to cart`);
 					return;
 				}
 
@@ -60,6 +57,32 @@ const userCartStore = create<CartState & CartAction>()(
 					items: state.items.filter((item) => item.id !== id),
 				}));
 				toast.success("Item removed from cart");
+			},
+			incrementItemQuantity: (id) => {
+				set((state) => ({
+					items: state.items.map((item) =>
+						item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
+					),
+				}));
+			},
+			decrementItemQuantity: (id) => {
+				const item = get().items.find((item) => item.id === id);
+				if (item?.quantity === 1) {
+					get().removeFromCart(id);
+					return;
+				}
+				set((state) => ({
+					items: state.items.map((item) =>
+						item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
+					),
+				}));
+			},
+			updateQuantity: (id, type) => {
+				if (type === "increment") {
+					get().incrementItemQuantity(id);
+				} else {
+					get().decrementItemQuantity(id);
+				}
 			},
 		}),
 		{
