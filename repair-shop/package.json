@@ -1,0 +1,41 @@
+{
+  "name": "repair-shop",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "format": "bunx biome format",
+    "format:fix": "bunx biome format --write",
+    "lint": "bunx biome lint",
+    "lint:fix": "bunx biome lint --write",
+    "biome:fix": "bunx biome check --write",
+    "biome:report": "biome check --reporter=summary"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.479.0",
+    "next": "15.2.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@eslint/eslintrc": "^3",
+    "@next/eslint-plugin-next": "^15.2.1",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.1",
+    "lefthook": "^1.11.3",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "ultracite": "^4.1.21"
+  }
+}
